@@ -773,9 +773,9 @@ export default function RenovationPage() {
                 <li className="hover:text-emerald-400 transition-all duration-500 flex items-start group">
                   <MapPin className="h-5 w-5 mr-3 mt-1 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 flex-shrink-0" />
                   <span className="group-hover:translate-x-1 transition-transform duration-500">
-                    Bahnhofstrasse 123
+                    Bahnhofstrasse
                     <br />
-                    8001 Zürich, Schweiz
+                    9470 Buchs, Schweiz
                   </span>
                 </li>
               </ul>
@@ -786,7 +786,7 @@ export default function RenovationPage() {
             style={{ animationDelay: "800ms" }}
           >
             <p className="hover:text-emerald-400 transition-colors duration-500 hover:scale-105 transform mb-4">
-              &copy; 2024 nik-renovation. Alle Rechte vorbehalten.
+              &copy; 2025 nik-renovation. Alle Rechte vorbehalten.
             </p>
             <div className="flex justify-center space-x-6 text-sm">
               <button
@@ -901,9 +901,9 @@ export default function RenovationPage() {
                   <p className="text-sm text-gray-600">
                     <strong>nik-renovation</strong>
                     <br />
-                    Bahnhofstrasse 123
+                    Bahnhofstrasse
                     <br />
-                    8001 Zürich, Schweiz
+                    9470 Buchs, Schweiz
                     <br />
                     Stand: Januar 2024
                   </p>
@@ -945,9 +945,9 @@ export default function RenovationPage() {
                     <br />
                     <strong>nik-renovation</strong>
                     <br />
-                    Bahnhofstrasse 123
+                    Bahnhofstrasse
                     <br />
-                    8001 Zürich, Schweiz
+                    9470 Buchs, Schweiz
                     <br />
                     E-Mail: info@nik-renovation.ch
                     <br />
