@@ -314,7 +314,11 @@ export default function RenovationPage() {
                   Zuhause in Realität
                 </span>
               </h1>
-          
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Komplette Renovierungen mit der Präzision und Qualität, die Schweizer Arbeit auszeichnet. Von
+                Luxusküchen bis zu modernen Badezimmern schaffen wir einzigartige Räume, die Ihre Erwartungen
+                übertreffen.
+              </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
@@ -324,7 +328,14 @@ export default function RenovationPage() {
                   Kostenloses Angebot Anfordern
                   <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-500" />
                 </Button>
-      
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onClick={() => document.getElementById("projekte")?.scrollIntoView({ behavior: "smooth" })}
+                  className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500"
+                >
+                  Unsere Projekte Ansehen
+                </Button>
               </div>
               <div className="flex items-center space-x-8 pt-4">
                 <div className="text-center group">
