@@ -294,7 +294,7 @@ export default function RenovationPage() {
 
       {/* Hero Section */}
       <section
-        className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 lg:py-32 overflow-hidden fade-in-section visible"
+        className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-10 lg:py-32 overflow-hidden fade-in-section visible"
         id="hero"
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -314,29 +314,7 @@ export default function RenovationPage() {
                   Zuhause in Realität
                 </span>
               </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Komplette Renovierungen mit der Präzision und Qualität, die Schweizer Arbeit auszeichnet. Von
-                Luxusküchen bis zu modernen Badezimmern schaffen wir einzigartige Räume, die Ihre Erwartungen
-                übertreffen.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  onClick={() => document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" })}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500 shadow-lg hover:shadow-2xl"
-                >
-                  Kostenloses Angebot Anfordern
-                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform duration-500" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  onClick={() => document.getElementById("projekte")?.scrollIntoView({ behavior: "smooth" })}
-                  className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 transform hover:scale-105 hover:-translate-y-1 transition-all duration-500"
-                >
-                  Unsere Projekte Ansehen
-                </Button>
-              </div>
+     
               <div className="flex items-center space-x-8 pt-4">
                 <div className="text-center group">
                   <div className="text-2xl font-bold text-gray-900 group-hover:scale-110 transition-transform duration-500">
