@@ -315,7 +315,7 @@ export default function RenovationPage() {
                 </span>
               </h1>
      
-              <div className="flex items-center space-x-8 pt-4">
+              <div className="flex items-center space-x-8 ">
                 <div className="text-center group">
                   <div className="text-2xl font-bold text-gray-900 group-hover:scale-110 transition-transform duration-500">
                     500+
