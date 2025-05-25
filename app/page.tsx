@@ -28,6 +28,8 @@ export default function RenovationPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [showAGB, setShowAGB] = useState(false)
+  const [showDatenschutz, setShowDatenschutz] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -783,12 +785,27 @@ export default function RenovationPage() {
             className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-400"
             style={{ animationDelay: "800ms" }}
           >
-            <p className="hover:text-emerald-400 transition-colors duration-500 hover:scale-105 transform">
+            <p className="hover:text-emerald-400 transition-colors duration-500 hover:scale-105 transform mb-4">
               &copy; 2024 nik-renovation. Alle Rechte vorbehalten.
             </p>
+            <div className="flex justify-center space-x-6 text-sm">
+              <button
+                onClick={() => setShowAGB(true)}
+                className="hover:text-emerald-400 transition-colors duration-500 hover:underline"
+              >
+                AGB
+              </button>
+              <button
+                onClick={() => setShowDatenschutz(true)}
+                className="hover:text-emerald-400 transition-colors duration-500 hover:underline"
+              >
+                Datenschutz
+              </button>
+            </div>
           </div>
         </div>
       </footer>
+
       {/* Floating WhatsApp Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <Button
@@ -805,6 +822,208 @@ export default function RenovationPage() {
           <span className="sr-only">WhatsApp kontaktieren</span>
         </Button>
       </div>
+
+      {/* AGB Modal */}
+      {showAGB && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center p-6 border-b">
+              <h2 className="text-2xl font-bold text-gray-900">Allgemeine Geschäftsbedingungen (AGB)</h2>
+              <button onClick={() => setShowAGB(false)} className="text-gray-500 hover:text-gray-700 transition-colors">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+              <div className="space-y-6 text-gray-700">
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">§ 1 Geltungsbereich</h3>
+                  <p>
+                    Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen nik-renovation und unseren
+                    Kunden über Renovierungs- und Baudienstleistungen. Abweichende Bedingungen des Kunden werden nur
+                    wirksam, wenn wir diesen ausdrücklich schriftlich zustimmen.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">§ 2 Vertragsschluss</h3>
+                  <p>
+                    Unsere Angebote sind freibleibend und unverbindlich. Ein Vertrag kommt erst durch unsere
+                    schriftliche Auftragsbestätigung oder durch Beginn der Arbeiten zustande. Mündliche Nebenabreden
+                    bedürfen der schriftlichen Bestätigung.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">§ 3 Preise und Zahlungsbedingungen</h3>
+                  <p>
+                    Alle Preise verstehen sich zuzüglich der gesetzlichen Mehrwertsteuer. Zahlungen sind innerhalb von
+                    14 Tagen nach Rechnungsstellung ohne Abzug fällig. Bei Zahlungsverzug werden Verzugszinsen in Höhe
+                    von 8% über dem Basiszinssatz berechnet.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">§ 4 Ausführung der Arbeiten</h3>
+                  <p>
+                    Wir führen alle Arbeiten nach den anerkannten Regeln der Technik und den geltenden Normen aus.
+                    Terminangaben sind nur verbindlich, wenn sie ausdrücklich als verbindlich bezeichnet werden. Wir
+                    sind berechtigt, Teilleistungen zu erbringen und abzurechnen.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">§ 5 Gewährleistung</h3>
+                  <p>
+                    Wir gewähren eine Gewährleistung von 2 Jahren ab Abnahme der Arbeiten. Bei Mängeln sind wir zunächst
+                    zur Nachbesserung berechtigt. Schlägt die Nachbesserung fehl, kann der Kunde Minderung oder
+                    Rücktritt verlangen.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">§ 6 Haftung</h3>
+                  <p>
+                    Unsere Haftung ist auf Vorsatz und grobe Fahrlässigkeit beschränkt. Bei leichter Fahrlässigkeit
+                    haften wir nur bei Verletzung wesentlicher Vertragspflichten. Die Haftung für mittelbare Schäden und
+                    entgangenen Gewinn ist ausgeschlossen.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">§ 7 Gerichtsstand und anwendbares Recht</h3>
+                  <p>
+                    Es gilt schweizerisches Recht. Gerichtsstand ist Zürich. Sollten einzelne Bestimmungen unwirksam
+                    sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
+                  </p>
+                </section>
+
+                <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-600">
+                    <strong>nik-renovation</strong>
+                    <br />
+                    Bahnhofstrasse 123
+                    <br />
+                    8001 Zürich, Schweiz
+                    <br />
+                    Stand: Januar 2024
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Datenschutz Modal */}
+      {showDatenschutz && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div className="flex justify-between items-center p-6 border-b">
+              <h2 className="text-2xl font-bold text-gray-900">Datenschutzerklärung</h2>
+              <button
+                onClick={() => setShowDatenschutz(false)}
+                className="text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+              <div className="space-y-6 text-gray-700">
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">1. Datenschutz auf einen Blick</h3>
+                  <p>
+                    Diese Datenschutzerklärung klärt Sie über die Art, den Umfang und Zweck der Verarbeitung von
+                    personenbezogenen Daten innerhalb unseres Onlineauftritts und der mit ihm verbundenen Webseiten,
+                    Funktionen und Inhalte auf.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">2. Verantwortliche Stelle</h3>
+                  <p>
+                    Verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+                    <br />
+                    <strong>nik-renovation</strong>
+                    <br />
+                    Bahnhofstrasse 123
+                    <br />
+                    8001 Zürich, Schweiz
+                    <br />
+                    E-Mail: info@nik-renovation.ch
+                    <br />
+                    Telefon: +41 44 123 45 67
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">3. Datenerfassung auf unserer Website</h3>
+                  <h4 className="font-semibold mb-2">Kontaktformular</h4>
+                  <p className="mb-4">
+                    Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem
+                    Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage
+                    und für den Fall von Anschlussfragen bei uns gespeichert.
+                  </p>
+
+                  <h4 className="font-semibold mb-2">Server-Log-Dateien</h4>
+                  <p>
+                    Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten
+                    Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind: Browsertyp und
+                    Browserversion, verwendetes Betriebssystem, Referrer URL, Hostname des zugreifenden Rechners,
+                    Uhrzeit der Serveranfrage und IP-Adresse.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">4. Cookies</h3>
+                  <p>
+                    Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgerät
+                    speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu
+                    machen. Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert
+                    werden und einzeln über deren Annahme entscheiden.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">5. Ihre Rechte</h3>
+                  <p>
+                    Sie haben das Recht auf Auskunft über die Sie betreffenden personenbezogenen Daten sowie auf
+                    Berichtigung, Löschung, Einschränkung der Verarbeitung oder Widerspruch gegen die Verarbeitung.
+                    Zudem haben Sie das Recht auf Datenübertragbarkeit und das Recht, sich bei einer Aufsichtsbehörde zu
+                    beschweren.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">6. SSL-Verschlüsselung</h3>
+                  <p>
+                    Diese Seite nutzt aus Gründen der Sicherheit und zum Schutz der Übertragung vertraulicher Inhalte
+                    eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile
+                    des Browsers von "http://" auf "https://" wechselt.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">7. WhatsApp</h3>
+                  <p>
+                    Unsere Website bietet die Möglichkeit, direkt über WhatsApp Kontakt mit uns aufzunehmen. Wenn Sie
+                    diese Funktion nutzen, werden Sie zu WhatsApp weitergeleitet. Dabei gelten die
+                    Datenschutzbestimmungen von WhatsApp.
+                  </p>
+                </section>
+
+                <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-600">
+                    <strong>Letzte Aktualisierung:</strong> Januar 2024
+                    <br />
+                    Bei Fragen zum Datenschutz kontaktieren Sie uns unter: info@nik-renovation.ch
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <style jsx global>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
