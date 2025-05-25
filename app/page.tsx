@@ -272,7 +272,7 @@ export default function RenovationPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 animate-pulse-slow">
-                ✨ Schweizer Qualität Garantiert
+                🇨🇭 Schweizer Qualität Garantiert
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Verwandeln Sie Ihr
