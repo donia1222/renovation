@@ -23,6 +23,35 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { useEffect, useRef, useState } from "react"
 
+// Custom hook for fade-in animations on scroll
+function useFadeInOnScroll() {
+  const [visibleElements, setVisibleElements] = useState(new Set())
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements((prev) => new Set([...prev, entry.target.id]))
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      },
+    )
+
+    // Observe all sections with fade-in class
+    const elements = document.querySelectorAll(".fade-in-section")
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  return visibleElements
+}
+
 export default function RenovationPage() {
   const observerRef = useRef<IntersectionObserver | null>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -30,6 +59,8 @@ export default function RenovationPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showAGB, setShowAGB] = useState(false)
   const [showDatenschutz, setShowDatenschutz] = useState(false)
+
+  const visibleElements = useFadeInOnScroll()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -262,7 +293,10 @@ export default function RenovationPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 lg:py-32 overflow-hidden">
+      <section
+        className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 lg:py-32 overflow-hidden fade-in-section visible"
+        id="hero"
+      >
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
@@ -352,11 +386,14 @@ export default function RenovationPage() {
       </section>
 
       {/* Dienstleistungen */}
-      <section id="dienstleistungen" className="py-20 bg-white relative overflow-hidden">
+      <section
+        id="dienstleistungen"
+        className={`py-20 bg-white relative overflow-hidden fade-in-section ${visibleElements.has("dienstleistungen") ? "visible" : ""}`}
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Premium Renovierungsdienstleistungen</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Renovierungsdienstleistungen</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Wir bieten komplette Renovierungsdienstleistungen mit Schweizer Qualitätsstandards, unter Verwendung von
               Premium-Materialien und modernsten Techniken.
@@ -407,8 +444,7 @@ export default function RenovationPage() {
             ].map((service, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-700 border-0 shadow-lg hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/50"
-                style={{ animationDelay: `${index * 150}ms` }}
+                className={`group hover:shadow-2xl transition-all duration-700 border-0 shadow-lg hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/50 fade-in-section delay-${(index + 1) * 100} ${visibleElements.has("dienstleistungen") ? "visible" : ""}`}
               >
                 <CardContent className="p-8 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-700 ease-out"></div>
@@ -439,7 +475,10 @@ export default function RenovationPage() {
       </section>
 
       {/* Projekte */}
-      <section id="projekte" className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
+      <section
+        id="projekte"
+        className={`py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden fade-in-section ${visibleElements.has("projekte") ? "visible" : ""}`}
+      >
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
@@ -470,8 +509,7 @@ export default function RenovationPage() {
             ].map((project, index) => (
               <Card
                 key={index}
-                className="group overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4"
-                style={{ animationDelay: `${index * 200}ms` }}
+                className={`group overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4 fade-in-section delay-${(index + 1) * 200} ${visibleElements.has("projekte") ? "visible" : ""}`}
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -502,7 +540,10 @@ export default function RenovationPage() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="py-20 bg-white relative overflow-hidden">
+      <section
+        id="testimonials"
+        className={`py-20 bg-white relative overflow-hidden fade-in-section ${visibleElements.has("testimonials") ? "visible" : ""}`}
+      >
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute bottom-20 right-10 w-72 h-72 bg-teal-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
 
@@ -538,8 +579,7 @@ export default function RenovationPage() {
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className="p-8 hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/30"
-                style={{ animationDelay: `${index * 150}ms` }}
+                className={`p-8 hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/30 fade-in-section delay-${(index + 1) * 150} ${visibleElements.has("testimonials") ? "visible" : ""}`}
               >
                 <CardContent className="p-0">
                   <div className="flex mb-4">
@@ -571,7 +611,7 @@ export default function RenovationPage() {
       {/* Kontakt */}
       <section
         id="kontakt"
-        className="py-20 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 relative overflow-hidden"
+        className={`py-20 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 relative overflow-hidden fade-in-section ${visibleElements.has("kontakt") ? "visible" : ""}`}
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-600/90 to-teal-600/90"></div>
@@ -1044,6 +1084,23 @@ export default function RenovationPage() {
         .animate-pulse-glow {
           animation: pulse-glow 3s ease-in-out infinite;
         }
+
+        .fade-in-section {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in-section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .fade-in-section.delay-100 { transition-delay: 0.1s; }
+        .fade-in-section.delay-200 { transition-delay: 0.2s; }
+        .fade-in-section.delay-300 { transition-delay: 0.3s; }
+        .fade-in-section.delay-400 { transition-delay: 0.4s; }
+        .fade-in-section.delay-500 { transition-delay: 0.5s; }
       `}</style>
     </div>
   )
