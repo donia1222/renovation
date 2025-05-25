@@ -30,7 +30,6 @@ export default function RenovationPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [showAGB, setShowAGB] = useState(false)
   const [showDatenschutz, setShowDatenschutz] = useState(false)
-  const [visibleElements, setVisibleElements] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,44 +42,14 @@ export default function RenovationPage() {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
 
-    // Intersection Observer for fade-in animations
-    const observerCallback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const elementId = entry.target.getAttribute("data-animate-id")
-          if (elementId) {
-            setVisibleElements((prev) => new Set([...prev, elementId]))
-          }
-        }
-      })
-    }
-
-    observerRef.current = new IntersectionObserver(observerCallback, {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    })
-
-    // Observe all elements with data-animate-id
-    const elementsToObserve = document.querySelectorAll("[data-animate-id]")
-    elementsToObserve.forEach((el) => {
-      if (observerRef.current) {
-        observerRef.current.observe(el)
-      }
-    })
-
     window.addEventListener("scroll", handleScroll)
     window.addEventListener("mousemove", handleMouseMove)
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("mousemove", handleMouseMove)
-      if (observerRef.current) {
-        observerRef.current.disconnect()
-      }
     }
   }, [])
-
-  const isVisible = (elementId: string) => visibleElements.has(elementId)
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -293,12 +262,7 @@ export default function RenovationPage() {
       </header>
 
       {/* Hero Section */}
-      <section
-        className={`relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 lg:py-32 overflow-hidden transition-all duration-1000 ease-out ${
-          isVisible("hero") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-        data-animate-id="hero"
-      >
+      <section className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
         <div className="absolute top-40 right-10 w-72 h-72 bg-teal-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
@@ -308,7 +272,7 @@ export default function RenovationPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 animate-pulse-slow">
-                ✨ Schweizer Qualität Garantiert
+                🇨🇭 Schweizer Qualität Garantiert
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Verwandeln Sie Ihr
@@ -388,20 +352,10 @@ export default function RenovationPage() {
       </section>
 
       {/* Dienstleistungen */}
-      <section
-        id="dienstleistungen"
-        className={`py-20 bg-white relative overflow-hidden transition-all duration-1000 ease-out ${
-          isVisible("services") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-        data-animate-id="services"
-      >
+      <section id="dienstleistungen" className="py-20 bg-white relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div
-            className={`text-center mb-16 transition-all duration-1000 ease-out delay-200 ${
-              isVisible("services") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Premium Renovierungsdienstleistungen</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Wir bieten komplette Renovierungsdienstleistungen mit Schweizer Qualitätsstandards, unter Verwendung von
@@ -453,13 +407,8 @@ export default function RenovationPage() {
             ].map((service, index) => (
               <Card
                 key={index}
-                className={`group hover:shadow-2xl transition-all duration-700 border-0 shadow-lg hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/50 ${
-                  isVisible("services") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
-                style={{
-                  animationDelay: `${index * 150}ms`,
-                  transitionDelay: isVisible("services") ? `${400 + index * 100}ms` : "0ms",
-                }}
+                className="group hover:shadow-2xl transition-all duration-700 border-0 shadow-lg hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/50"
+                style={{ animationDelay: `${index * 150}ms` }}
               >
                 <CardContent className="p-8 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-700 ease-out"></div>
@@ -490,20 +439,10 @@ export default function RenovationPage() {
       </section>
 
       {/* Projekte */}
-      <section
-        id="projekte"
-        className={`py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden transition-all duration-1000 ease-out ${
-          isVisible("projects") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-        data-animate-id="projects"
-      >
+      <section id="projekte" className="py-20 bg-gradient-to-b from-gray-50 to-gray-100 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <div
-            className={`text-center mb-16 transition-all duration-1000 ease-out delay-200 ${
-              isVisible("projects") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Herausragende Projekte</h2>
             <p className="text-xl text-gray-600">Entdecken Sie einige unserer beeindruckendsten Renovierungen</p>
           </div>
@@ -531,13 +470,8 @@ export default function RenovationPage() {
             ].map((project, index) => (
               <Card
                 key={index}
-                className={`group overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4 ${
-                  isVisible("projects") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
-                style={{
-                  animationDelay: `${index * 200}ms`,
-                  transitionDelay: isVisible("projects") ? `${400 + index * 150}ms` : "0ms",
-                }}
+                className="group overflow-hidden hover:shadow-2xl transition-all duration-700 hover:-translate-y-4"
+                style={{ animationDelay: `${index * 200}ms` }}
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -568,22 +502,12 @@ export default function RenovationPage() {
       </section>
 
       {/* Testimonials */}
-      <section
-        id="testimonials"
-        className={`py-20 bg-white relative overflow-hidden transition-all duration-1000 ease-out ${
-          isVisible("testimonials") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-        data-animate-id="testimonials"
-      >
+      <section id="testimonials" className="py-20 bg-white relative overflow-hidden">
         <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
         <div className="absolute bottom-20 right-10 w-72 h-72 bg-teal-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <div
-            className={`text-center mb-16 transition-all duration-1000 ease-out delay-200 ${
-              isVisible("testimonials") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Was Unsere Kunden Sagen</h2>
             <p className="text-xl text-gray-600">Die Zufriedenheit unserer Kunden ist unsere beste Referenz</p>
           </div>
@@ -614,13 +538,8 @@ export default function RenovationPage() {
             ].map((testimonial, index) => (
               <Card
                 key={index}
-                className={`p-8 hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/30 ${
-                  isVisible("testimonials") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
-                style={{
-                  animationDelay: `${index * 150}ms`,
-                  transitionDelay: isVisible("testimonials") ? `${400 + index * 150}ms` : "0ms",
-                }}
+                className="p-8 hover:shadow-2xl transition-all duration-700 hover:-translate-y-3 bg-gradient-to-br from-white to-gray-50/30"
+                style={{ animationDelay: `${index * 150}ms` }}
               >
                 <CardContent className="p-0">
                   <div className="flex mb-4">
@@ -652,21 +571,14 @@ export default function RenovationPage() {
       {/* Kontakt */}
       <section
         id="kontakt"
-        className={`py-20 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 relative overflow-hidden transition-all duration-1000 ease-out ${
-          isVisible("contact") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-        data-animate-id="contact"
+        className="py-20 bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-600/90 to-teal-600/90"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div
-              className={`text-white transition-all duration-1000 ease-out delay-200 ${
-                isVisible("contact") ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
-              }`}
-            >
+            <div className="text-white">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">Bereit, Ihr Zuhause zu Verwandeln?</h2>
               <p className="text-xl text-emerald-100 mb-8 leading-relaxed">
                 Kontaktieren Sie uns für eine kostenlose Beratung und entdecken Sie, wie wir Ihre Traumrenovierung mit
@@ -709,11 +621,7 @@ export default function RenovationPage() {
               </div>
             </div>
 
-            <Card
-              className={`p-8 bg-white/95 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-all duration-1000 ease-out delay-400 ${
-                isVisible("contact") ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
-              }`}
-            >
+            <Card className="p-8 bg-white/95 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-shadow duration-700">
               <CardContent className="p-0">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Angebot Anfordern</h3>
                 <form className="space-y-6">
@@ -774,20 +682,11 @@ export default function RenovationPage() {
       </section>
 
       {/* Footer */}
-      <footer
-        className={`bg-gray-900 text-white py-16 relative overflow-hidden transition-all duration-1000 ease-out ${
-          isVisible("footer") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-        data-animate-id="footer"
-      >
+      <footer className="bg-gray-900 text-white py-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-black to-gray-900"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-4 gap-8">
-            <div
-              className={`transition-all duration-1000 ease-out delay-200 ${
-                isVisible("footer") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-            >
+            <div className="">
               <div className="flex items-center space-x-3 mb-6">
                 <img
                   src="/images/logofooter.png"
@@ -800,11 +699,7 @@ export default function RenovationPage() {
                 Exzellenz.
               </p>
             </div>
-            <div
-              className={`transition-all duration-1000 ease-out delay-300 ${
-                isVisible("footer") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-            >
+            <div className="" style={{ animationDelay: "200ms" }}>
               <h4 className="font-semibold mb-6 text-emerald-400 text-lg">Dienstleistungen</h4>
               <ul className="space-y-4 text-gray-400">
                 <li
@@ -833,11 +728,7 @@ export default function RenovationPage() {
                 </li>
               </ul>
             </div>
-            <div
-              className={`transition-all duration-1000 ease-out delay-400 ${
-                isVisible("footer") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-            >
+            <div className="" style={{ animationDelay: "400ms" }}>
               <h4 className="font-semibold mb-6 text-emerald-400 text-lg">Unternehmen</h4>
               <ul className="space-y-4 text-gray-400">
                 <li
@@ -866,11 +757,7 @@ export default function RenovationPage() {
                 </li>
               </ul>
             </div>
-            <div
-              className={`transition-all duration-1000 ease-out delay-500 ${
-                isVisible("footer") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
-            >
+            <div className="" style={{ animationDelay: "600ms" }}>
               <h4 className="font-semibold mb-6 text-emerald-400 text-lg">Kontakt</h4>
               <ul className="space-y-4 text-gray-400">
                 <li className="hover:text-emerald-400 transition-all duration-500 flex items-center group">
@@ -886,21 +773,20 @@ export default function RenovationPage() {
                 <li className="hover:text-emerald-400 transition-all duration-500 flex items-start group">
                   <MapPin className="h-5 w-5 mr-3 mt-1 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 flex-shrink-0" />
                   <span className="group-hover:translate-x-1 transition-transform duration-500">
-                    Bahnhofstrasse 123
+                    Bahnhofstrasse
                     <br />
-                    8001 Zürich, Schweiz
+                    9470 Buchs, Schweiz
                   </span>
                 </li>
               </ul>
             </div>
           </div>
           <div
-            className={`border-t border-gray-800 mt-16 pt-8 text-center text-gray-400 transition-all duration-1000 ease-out delay-600 ${
-              isVisible("footer") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-400"
+            style={{ animationDelay: "800ms" }}
           >
             <p className="hover:text-emerald-400 transition-colors duration-500 hover:scale-105 transform mb-4">
-              &copy; 2024 nik-renovation. Alle Rechte vorbehalten.
+              &copy; 2025 nik-renovation. Alle Rechte vorbehalten.
             </p>
             <div className="flex justify-center space-x-6 text-sm">
               <button
@@ -1015,9 +901,9 @@ export default function RenovationPage() {
                   <p className="text-sm text-gray-600">
                     <strong>nik-renovation</strong>
                     <br />
-                    Bahnhofstrasse 123
+                    Bahnhofstrasse
                     <br />
-                    8001 Zürich, Schweiz
+                    9470 Buchs, Schweiz
                     <br />
                     Stand: Januar 2024
                   </p>
@@ -1059,9 +945,9 @@ export default function RenovationPage() {
                     <br />
                     <strong>nik-renovation</strong>
                     <br />
-                    Bahnhofstrasse 123
+                    Bahnhofstrasse
                     <br />
-                    8001 Zürich, Schweiz
+                    9470 Buchs, Schweiz
                     <br />
                     E-Mail: info@nik-renovation.ch
                     <br />
