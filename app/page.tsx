@@ -294,7 +294,7 @@ export default function RenovationPage() {
 
       {/* Hero Section */}
       <section
-        className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-10 lg:py-32 overflow-hidden fade-in-section visible"
+        className="relative bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-5 lg:py-32 overflow-hidden fade-in-section visible"
         id="hero"
       >
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
