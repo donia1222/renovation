@@ -820,6 +820,19 @@ export default function RenovationPage() {
                 Datenschutz
               </button>
             </div>
+                <div className="mt-6 text-center">
+  <p className="text-xl text-white">
+    <a
+      href="https://lweb.ch"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-white"
+    >
+     Webseite Design
+      <span className="ml-1 text-[#ff69b4] text-xl">lweb.ch</span>
+    </a>
+  </p>
+</div>
           </div>
         </div>
       </footer>
