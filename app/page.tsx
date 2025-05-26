@@ -236,7 +236,7 @@ export default function RenovationPage() {
             isMobileMenuOpen ? "max-h-96 opacity-100 border-t border-emerald-500/30" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="bg-gradient-to-b from-emerald-600 to-emerald-700 px-4 py-6 space-y-4">
+          <div className="bg-gradient-to-b from-emerald-600 to-teal-600 px-4 py-6 space-y-4">
             <button
               onClick={() => {
                 document.getElementById("dienstleistungen")?.scrollIntoView({ behavior: "smooth" })
@@ -314,7 +314,7 @@ export default function RenovationPage() {
                   Zuhause in Realität
                 </span>
               </h1>
-     
+
               <div className="flex items-center space-x-8 ">
                 <div className="text-center group">
                   <div className="text-2xl font-bold text-gray-900 group-hover:scale-110 transition-transform duration-500">
@@ -625,7 +625,7 @@ export default function RenovationPage() {
                     <MapPin className="h-6 w-6 text-white" />
                   </div>
                   <span className="text-emerald-100 text-lg group-hover:text-white transition-colors duration-500">
-                    Bahnhofstrasse 123, 8001 Zürich
+             Bahnhofstrasse, 9470 Buchs, Schweiz
                   </span>
                 </div>
                 <div className="flex items-center group">
@@ -820,19 +820,20 @@ export default function RenovationPage() {
                 Datenschutz
               </button>
             </div>
-                <div className="mt-6 text-center">
-  <p className="text-xl text-white">
-    <a
-      href="https://lweb.ch"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-white"
-    >
-     Webseite Design
-      <span className="ml-1 text-[#ff69b4] text-xl">lweb.ch</span>
-    </a>
-  </p>
-</div>
+            <div className="mt-6 text-center">
+              <p className="text-xl text-white">
+                <a href="https://lweb.ch" target="_blank" rel="noopener noreferrer" className="text-white">
+                  Demo-Page by: 
+                  <span className="ml-1 text-[#ff69b4] text-xl">lweb.ch</span>
+                </a>
+              </p>
+                   <p className="text-xl text-white">
+                <a href="https://lweb.ch" target="_blank" rel="noopener noreferrer" className="text-white">
+                Einige Bilder stammen von Freepik
+
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </footer>
