@@ -936,7 +936,7 @@ export default function RenovationPage() {
               <button onClick={() => setShowAGB(true)} className="hover:text-emerald-400 transition-colors">AGB</button>
               <button onClick={() => setShowDatenschutz(true)} className="hover:text-emerald-400 transition-colors">Datenschutz</button>
               <a href="https://lweb.ch" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">
-               Moderne & individuelle Webseiten <span className="text-pink-400 font-semibold">lweb.ch</span>
+               Webseite <span className="text-pink-400 font-semibold">lweb.ch</span>
               </a>
             </div>
           </div>
