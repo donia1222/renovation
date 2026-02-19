@@ -112,16 +112,16 @@ export default function RenovationPage() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-[3px] z-[100] bg-transparent">
+      <div className="fixed top-0 left-0 w-full h-[4px] z-[100] bg-slate-700/60">
         <div
-          className="h-full bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"
+          className="h-full bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 shadow-[0_0_8px_rgba(52,211,153,0.7)]"
           style={{ width: `${scrollProgress}%`, transition: "width 0.1s linear" }}
         />
       </div>
 
       {/* ── HEADER ── */}
       <header
-        className={`fixed top-[3px] left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           headerScrolled
             ? "bg-slate-800/90 backdrop-blur-xl border-b border-white/10 shadow-2xl"
             : "bg-transparent"
@@ -204,7 +204,7 @@ export default function RenovationPage() {
             <div className="space-y-8">
               <div className="flex items-center gap-3">
                 <div className="h-px w-12 bg-emerald-400" />
-                <span className="text-emerald-400 text-xs font-bold tracking-[0.2em] uppercase">Schweizer Qualität seit 2009</span>
+                <span className="text-emerald-400 text-xs font-bold tracking-[0.2em] uppercase"><span className="text-base mr-1">🇨🇭</span>Schweizer Qualität seit 2009</span>
               </div>
 
               <h1 className="text-5xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight">
