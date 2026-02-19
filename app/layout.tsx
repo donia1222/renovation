@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "nik-renovation – Premium Renovierungen Schweiz",
   description: "Luxus-Renovierungen mit garantierter Schweizer Qualität. Küchen, Bäder, Komplettumbauten – Ihr Partner in Buchs SG.",
   generator: "v0.dev",
+  themeColor: "#1e293b",
 }
 
 export default function RootLayout({
