@@ -356,9 +356,9 @@ export default function RenovationPage() {
               <span className="text-emerald-600 text-xs font-bold tracking-[0.2em] uppercase">Was wir bieten</span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-black text-slate-900 leading-tight">
-              Vollständige{" "}
-              <span className="text-emerald-600">Renovierungs</span>
-              lösungen
+              Umbau{" "}
+              <span className="text-emerald-600"> Modernisierung</span>
+
             </h2>
             <p className="text-slate-500 mt-4 leading-relaxed">
               Schweizer Qualitätsstandards mit modernsten Techniken und Premium-Materialien.
@@ -936,7 +936,7 @@ export default function RenovationPage() {
               <button onClick={() => setShowAGB(true)} className="hover:text-emerald-400 transition-colors">AGB</button>
               <button onClick={() => setShowDatenschutz(true)} className="hover:text-emerald-400 transition-colors">Datenschutz</button>
               <a href="https://lweb.ch" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">
-                Demo by <span className="text-pink-400 font-semibold">lweb.ch</span>
+               Moderne & individuelle Webseiten <span className="text-pink-400 font-semibold">lweb.ch</span>
               </a>
             </div>
           </div>
