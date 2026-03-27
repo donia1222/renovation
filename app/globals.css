@@ -45,8 +45,8 @@
     @apply border-border;
   }
   body {
-    background-color: #1A1209;
-    color: #F8F4EF;
+    background-color: #EDE6DA;
+    color: #1A1209;
     font-family: var(--font-poppins), 'Poppins', Arial, sans-serif;
   }
 }
@@ -54,7 +54,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  background-color: #1A1209;
+  background-color: #EDE6DA;
 }
 
 /* Custom scrollbar – NIKQI sand */

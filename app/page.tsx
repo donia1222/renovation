@@ -127,8 +127,8 @@ export default function NikqiPage() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 ${
           headerScrolled
-            ? "bg-[#1A1209]/95 backdrop-blur-xl border-b border-[#B09070]/20 shadow-2xl"
-            : "bg-transparent"
+            ? "bg-[#F8F4EF] border-b border-[#B09070]/30 shadow-md"
+            : "bg-[#F8F4EF]/80 backdrop-blur-sm"
         }`}
       >
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -144,7 +144,7 @@ export default function NikqiPage() {
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className="text-[#F8F4EF]/80 hover:text-[#B09070] text-sm font-semibold tracking-widest uppercase relative group"
+                className="text-[#1A1209]/70 hover:text-[#B09070] text-sm font-semibold tracking-widest uppercase relative group"
               >
                 {label}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#B09070] group-hover:w-full" />
@@ -161,7 +161,7 @@ export default function NikqiPage() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-[#F8F4EF]"
+            className="md:hidden p-2 text-[#1A1209]"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -179,14 +179,14 @@ export default function NikqiPage() {
           />
           {/* Drawer panel */}
           <div
-            className="absolute top-0 right-0 w-[85vw] max-w-xs bg-[#1A1209] border-l border-[#B09070]/30 shadow-2xl flex flex-col"
+            className="absolute top-0 right-0 w-[85vw] max-w-xs bg-[#F8F4EF] border-l border-[#B09070]/30 shadow-2xl flex flex-col"
             style={{ height: "100dvh", animation: "slideInRight 0.3s cubic-bezier(0.25,0.46,0.45,0.94)" }}
             onClick={e => e.stopPropagation()}
           >
             {/* Top */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-[#B09070]/20">
               <img src="/logpnew.png" alt="NIKQI" className="h-8 w-auto" />
-              <button onClick={() => setIsMobileMenuOpen(false)} className="w-8 h-8 flex items-center justify-center text-[#8A7060] hover:text-[#B09070] hover:bg-[#B09070]/10 transition-all">
+              <button onClick={() => setIsMobileMenuOpen(false)} className="w-8 h-8 flex items-center justify-center text-[#6A5040] hover:text-[#B09070] hover:bg-[#B09070]/10 transition-all">
                 <X className="h-5 w-5" />
               </button>
             </div>
@@ -202,7 +202,7 @@ export default function NikqiPage() {
                 <button
                   key={id}
                   onClick={() => scrollTo(id)}
-                  className="flex items-center gap-3 w-full px-4 py-3 text-[#D4C0A8] hover:text-[#F8F4EF] hover:bg-[#B09070]/10 border-l-2 border-transparent hover:border-[#B09070] group"
+                  className="flex items-center gap-3 w-full px-4 py-3 text-[#1A1209]/70 hover:text-[#1A1209] hover:bg-[#B09070]/10 border-l-2 border-transparent hover:border-[#B09070] group"
                   style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: `${i * 60 + 80}ms` }}
                 >
                   <span className="text-[#B09070]">{icon}</span>
@@ -217,8 +217,8 @@ export default function NikqiPage() {
 
             {/* Contact info */}
             <div className="px-5 py-5 space-y-3" >
-              <p className="text-[#8A7060] text-[10px] font-semibold uppercase tracking-[0.2em] mb-3">Kontakt</p>
-              <a href="tel:+41791326565" className="flex items-center gap-3 text-[#D4C0A8] hover:text-[#B09070] transition-colors group">
+              <p className="text-[#B09070] text-[10px] font-semibold uppercase tracking-[0.2em] mb-3">Kontakt</p>
+              <a href="tel:+41791326565" className="flex items-center gap-3 text-[#1A1209]/70 hover:text-[#B09070] transition-colors group">
                 <span className="w-8 h-8 bg-[#B09070]/10 flex items-center justify-center text-[#B09070] group-hover:bg-[#B09070]/20 transition-colors">
                   <Phone className="h-3.5 w-3.5" />
                 </span>
@@ -227,7 +227,7 @@ export default function NikqiPage() {
                   <p className="text-sm font-semibold">079 132 65 65</p>
                 </div>
               </a>
-              <a href="mailto:info@nikqi.li" className="flex items-center gap-3 text-[#D4C0A8] hover:text-[#B09070] transition-colors group">
+              <a href="mailto:info@nikqi.li" className="flex items-center gap-3 text-[#1A1209]/70 hover:text-[#B09070] transition-colors group">
                 <span className="w-8 h-8 bg-[#B09070]/10 flex items-center justify-center text-[#B09070] group-hover:bg-[#B09070]/20 transition-colors">
                   <Mail className="h-3.5 w-3.5" />
                 </span>
@@ -236,22 +236,22 @@ export default function NikqiPage() {
                   <p className="text-sm font-semibold">info@nikqi.li</p>
                 </div>
               </a>
-              <div className="flex items-center gap-3 text-[#D4C0A8]">
+              <div className="flex items-center gap-3 text-[#1A1209]/70">
                 <span className="w-8 h-8 bg-[#B09070]/10 flex items-center justify-center text-[#B09070]">
                   <MapPin className="h-3.5 w-3.5" />
                 </span>
                 <div>
-                  <p className="text-xs text-[#8A7060] uppercase tracking-wider">Adresse</p>
-                  <p className="text-sm font-semibold">Bahnhofstrasse 25, 9475 Sevelen</p>
+                  <p className="text-xs text-[#B09070] uppercase tracking-wider">Adresse</p>
+                  <p className="text-sm font-semibold text-[#1A1209]">Bahnhofstrasse 25, 9475 Sevelen</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3 text-[#D4C0A8]">
+              <div className="flex items-center gap-3 text-[#1A1209]/70">
                 <span className="w-8 h-8 bg-[#B09070]/10 flex items-center justify-center text-[#B09070]">
                   <Clock className="h-3.5 w-3.5" />
                 </span>
                 <div>
-                  <p className="text-xs text-[#8A7060] uppercase tracking-wider">Erreichbar</p>
-                  <p className="text-sm font-semibold">24h · 7 Tage / Woche</p>
+                  <p className="text-xs text-[#B09070] uppercase tracking-wider">Erreichbar</p>
+                  <p className="text-sm font-semibold text-[#1A1209]">24h · 7 Tage / Woche</p>
                 </div>
               </div>
             </div>
@@ -280,12 +280,7 @@ export default function NikqiPage() {
       )}
 
       {/* ── HERO ── */}
-      <section className="relative bg-[#1A1209] overflow-hidden flex items-center pt-16">
-        {/* Warm glow – only desktop */}
-        <div className="absolute inset-0 pointer-events-none hidden lg:block">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#B09070]/10 rounded-full blur-[100px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#8A7060]/8 rounded-full blur-[80px]" />
-        </div>
+      <section className="relative bg-[#EDE6DA] overflow-hidden flex items-center pt-16">
 
         <div className="container mx-auto px-6 relative z-10 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -309,14 +304,14 @@ export default function NikqiPage() {
               <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase whitespace-nowrap">Sevelen · Schweiz · Liechtenstein</span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-semibold text-[#F8F4EF] leading-[1.02] tracking-tight uppercase">
+            <h1 className="text-5xl lg:text-7xl font-semibold text-[#1A1209] leading-[1.02] tracking-tight uppercase">
               Badkultur{" "}
               <span className="text-[#B09070]">&</span>
               <br />
               Wärme.
             </h1>
 
-            <p className="text-[#D4C0A8] text-lg leading-relaxed max-w-xl">
+            <p className="text-[#6A5040] text-lg leading-relaxed max-w-xl">
               Ihr Spezialist in Sevelen – für Bad, Heizung und Wärmepumpen. Schweizer Präzision, 24/7 erreichbar.
             </p>
 
@@ -331,7 +326,7 @@ export default function NikqiPage() {
                 <button
                   key={label}
                   onClick={() => scrollTo("dienstleistungen")}
-                  className="flex items-center gap-1.5 bg-[#B09070]/15 hover:bg-[#B09070]/30 border border-[#B09070]/30 hover:border-[#B09070] text-[#D4C0A8] hover:text-[#F8F4EF] text-xs font-semibold px-3 py-1.5 tracking-wide"
+                  className="flex items-center gap-1.5 bg-[#B09070]/20 hover:bg-[#B09070]/40 border border-[#B09070]/40 hover:border-[#B09070] text-[#1A1209] text-xs font-semibold px-3 py-1.5 tracking-wide"
                 >
                   <span className="text-[#B09070]">{icon}</span>
                   {label}
@@ -342,21 +337,21 @@ export default function NikqiPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => scrollTo("kontakt")}
-                className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase hover:scale-105 group"
+                className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase group"
               >
                 Kostenlose Beratung
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => scrollTo("projekte")}
-                className="flex items-center justify-center gap-2 border border-[#B09070]/40 text-[#F8F4EF] hover:border-[#B09070] hover:text-[#B09070] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase bg-transparent"
+                className="flex items-center justify-center gap-2 border border-[#B09070] text-[#1A1209] hover:bg-[#B09070]/10 font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase bg-transparent"
               >
                 Projekte ansehen
               </button>
             </div>
 
             {/* Stats row */}
-            <div className="flex items-center gap-10 pt-2 border-t border-[#B09070]/20">
+            <div className="flex items-center gap-10 pt-2 border-t border-[#B09070]/30">
               {[
                 { value: "200+", label: "Projekte" },
                 { value: "10+", label: "Jahre" },

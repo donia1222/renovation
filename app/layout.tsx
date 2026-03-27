@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description:
     "NIKQI Badkultur & Wärme – Ihr Spezialist für Badsanierungen, Heizungsbau, Wasserschadensanierung und Wärmepumpen in Sevelen (SG), der ganzen Schweiz und Liechtenstein. 24h erreichbar, 7 Tage die Woche. Tel. 079 132 65 65",
   generator: "v0.dev",
-  themeColor: "#1A1209",
+  themeColor: "#B09070",
   metadataBase: new URL("https://www.nikqi.li"),
   alternates: {
     canonical: "https://www.nikqi.li",
@@ -86,9 +86,9 @@ export default function RootLayout({
   return (
     <html lang="de" className={poppins.variable}>
       <head>
-        <meta name="theme-color" content="#1A1209" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#1A1209" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#1A1209" />
+        <meta name="theme-color" content="#B09070" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#B09070" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#B09070" />
         <meta name="msapplication-navbutton-color" content="#1A1209" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -153,7 +153,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen font-sans" style={{ backgroundColor: "#1A1209" }}>{children}</body>
+      <body className="min-h-screen font-sans" style={{ backgroundColor: "#EDE6DA" }}>{children}</body>
     </html>
   )
 }
