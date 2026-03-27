@@ -29,33 +29,14 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-  }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    /* NIKQI Brand Colors */
+    --nikqi-sand: #B09070;
+    --nikqi-sand-light: #D4C0A8;
+    --nikqi-sand-dark: #8A7060;
+    --nikqi-dark: #1A1209;
+    --nikqi-cream: #F8F4EF;
+    --nikqi-cream2: #EDE6DA;
   }
 }
 
@@ -65,115 +46,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-poppins), 'Poppins', Arial, sans-serif;
   }
-}
-
-/* Enhanced animations */
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-}
-
-@keyframes gradient {
-  0%,
-  100% {
-    background-size: 200% 200%;
-    background-position: left center;
-  }
-  50% {
-    background-size: 200% 200%;
-    background-position: right center;
-  }
-}
-
-@keyframes pulse-slow {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.animate-blob {
-  animation: blob 8s infinite ease-in-out;
-}
-
-.animate-gradient {
-  background: linear-gradient(-45deg, #059669, #0d9488, #0891b2, #059669);
-  background-size: 400% 400%;
-  animation: gradient 4s ease infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-.animation-delay-1000 {
-  animation-delay: 1s;
-}
-
-/* Grid pattern */
-.bg-grid-pattern {
-  background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-
-/* Enhanced scroll animations */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.scroll-animate.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-in-left {
-  transform: translateX(-60px) translateY(20px);
-}
-
-.fade-in-right {
-  transform: translateX(60px) translateY(20px);
-}
-
-.fade-in-up {
-  transform: translateY(60px);
-}
-
-.fade-in-left.animate-in,
-.fade-in-right.animate-in,
-.fade-in-up.animate-in {
-  transform: translateX(0) translateY(0);
-}
-
-/* Enhanced shadows */
-.shadow-3xl {
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
 }
 
 /* Smooth scrolling */
@@ -181,32 +55,39 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar – NIKQI sand */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #F8F4EF;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #059669, #0d9488);
+  background: linear-gradient(to bottom, #B09070, #8A7060);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #047857, #0f766e);
+  background: linear-gradient(to bottom, #8A7060, #6A5040);
 }
 
-/* Enhanced hover effects */
+/* Scroll animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.scroll-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lift */
 .hover-lift {
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 .hover-lift:hover {
   transform: translateY(-8px);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(26, 18, 9, 0.2);
 }
 
 /* Elegant transitions */
@@ -214,20 +95,67 @@ html {
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Improved focus states */
+/* Focus states – NIKQI sand */
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+  box-shadow: 0 0 0 3px rgba(176, 144, 112, 0.2);
   transform: translateY(-1px);
 }
 
-/* Button enhancements */
 button {
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 button:active {
   transform: scale(0.98);
 }
+
+/* Grid pattern */
+.bg-grid-pattern {
+  background-image: radial-gradient(circle, rgba(176,144,112,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Enhanced shadow */
+.shadow-3xl {
+  box-shadow: 0 35px 60px -12px rgba(26, 18, 9, 0.25);
+}
+
+/* Mobile drawer */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+@keyframes fadeSlideIn {
+  from { transform: translateX(20px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* Marquee */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Blob */
+@keyframes blob {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(30px, -50px) scale(1.1); }
+  66%  { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+.animate-blob {
+  animation: blob 8s infinite ease-in-out;
+}
+
+/* Pulse slow */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }

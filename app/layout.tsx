@@ -1,42 +1,45 @@
 import type React from "react"
 import type { Metadata } from "next"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+  display: "swap",
+})
+
 export const metadata: Metadata = {
-  title: "nik-renovation – Renovierungen & Umbau | Buchs SG, Schweiz & Liechtenstein",
+  title: "NIKQI Badkultur & Wärme – Badsanierungen & Heizungsbau | Sevelen, Schweiz & Liechtenstein",
   description:
-    "Ihr Experte für Premium-Renovierungen in Buchs SG, der ganzen Schweiz und Liechtenstein. Küchenrenovierung, Luxusbäder, Komplettumbauten – Schweizer Qualität mit 15 Jahren Erfahrung. Jetzt kostenlos beraten lassen!",
+    "NIKQI Badkultur & Wärme – Ihr Spezialist für Badsanierungen, Heizungsbau, Wasserschadensanierung und Wärmepumpen in Sevelen (SG), der ganzen Schweiz und Liechtenstein. 24h erreichbar, 7 Tage die Woche. Tel. 079 132 65 65",
   generator: "v0.dev",
-  themeColor: "#1e293b",
+  themeColor: "#1A1209",
   metadataBase: new URL("https://www.nikqi.li"),
   alternates: {
     canonical: "https://www.nikqi.li",
   },
   keywords: [
-    "Renovierung Buchs SG",
-    "Umbau Buchs",
-    "Renovation Schweiz",
-    "Renovierung Liechtenstein",
-    "Küchenrenovierung Schweiz",
-    "Badezimmer Renovierung",
-    "Luxusbad Umbau",
-    "Innenausbau Schweiz",
-    "Wohnungsrenovierung Buchs",
-    "Handwerker Buchs SG",
-    "Renovierungsfirma Rheintal",
-    "Umbaufirma Liechtenstein",
-    "nik renovation",
-    "nikqi renovation",
-    "Hausrenovierung Schweiz",
-    "Sanierung Buchs",
-    "Malerarbeiten Buchs",
-    "Bodenbeläge Schweiz",
-    "Innenarchitektur Buchs",
-    "Schlüsselfertige Renovierung",
+    "NIKQI Badkultur Wärme",
+    "Badsanierung Sevelen",
+    "Badsanierung Rheintal",
+    "Heizungsbau Sevelen",
+    "Heizungsbau Schweiz",
+    "Wasserschadensanierung Schweiz",
+    "Wärmepumpen Sevelen",
+    "Wärmepumpen Liechtenstein",
+    "Badumbau Rheintal",
+    "Heizungsmodernisierung Schweiz",
+    "erneuerbare Energien Schweiz",
+    "Sanitär Sevelen SG",
+    "24h Notfalldienst Heizung",
+    "Badsanierung Liechtenstein",
+    "Badkultur Wärme Sevelen",
   ],
-  authors: [{ name: "nik-renovation", url: "https://www.nikqi.li" }],
-  creator: "nik-renovation",
-  publisher: "nik-renovation",
+  authors: [{ name: "NIKQI Badkultur & Wärme", url: "https://www.nikqi.li" }],
+  creator: "NIKQI Badkultur & Wärme",
+  publisher: "NIKQI Badkultur & Wärme",
   robots: {
     index: true,
     follow: true,
@@ -51,28 +54,28 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_CH",
     url: "https://www.nikqi.li",
-    siteName: "nik-renovation",
-    title: "nik-renovation – Premium Renovierungen | Buchs SG, Schweiz & Liechtenstein",
+    siteName: "NIKQI Badkultur & Wärme",
+    title: "NIKQI Badkultur & Wärme – Badsanierungen & Heizungsbau | Sevelen SG",
     description:
-      "Professionelle Renovierungen in Buchs SG, der ganzen Schweiz und Liechtenstein. Küchen, Bäder, Komplettumbauten mit Schweizer Qualitätsgarantie. 500+ abgeschlossene Projekte, 15 Jahre Erfahrung.",
+      "Badsanierungen, Heizungsbau, Wasserschadensanierung und Wärmepumpen in Sevelen, der ganzen Schweiz und Liechtenstein. 24h erreichbar – 079 132 65 65.",
     images: [
       {
-        url: "/beautiful-shot-modern-house-kitchen.jpg",
+        url: "/logpnew.png",
         width: 1200,
         height: 630,
-        alt: "nik-renovation – Premium Renovierungen Schweiz und Liechtenstein",
+        alt: "NIKQI Badkultur & Wärme – Sevelen, Schweiz & Liechtenstein",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "nik-renovation – Renovierungen Schweiz & Liechtenstein",
+    title: "NIKQI Badkultur & Wärme – 24/7 Service",
     description:
-      "Premium-Renovierungen in Buchs SG, Schweiz und Liechtenstein. Küchen, Bäder, Komplettumbauten mit Schweizer Qualitätsgarantie.",
-    images: ["/beautiful-shot-modern-house-kitchen.jpg"],
+      "Badsanierungen, Heizungsbau und Wärmepumpen in Sevelen, Schweiz und Liechtenstein. 24h erreichbar – 079 132 65 65.",
+    images: ["/logpnew.png"],
   },
   verification: {},
-  category: "Renovation & Umbau",
+  category: "Badkultur & Heizungsbau",
 }
 
 export default function RootLayout({
@@ -81,8 +84,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" className={poppins.variable}>
       <head>
+        <link rel="icon" href="/logpnew.png" type="image/png" sizes="any" />
+        <link rel="apple-touch-icon" href="/logpnew.png" />
         <link rel="canonical" href="https://www.nikqi.li" />
         <meta name="geo.region" content="CH-SG" />
         <meta name="geo.placename" content="Buchs" />
@@ -96,26 +101,26 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              name: "nik-renovation",
+              name: "NIKQI Badkultur & Wärme",
               url: "https://www.nikqi.li",
-              logo: "https://www.nikqi.li/images/logo.png",
-              image: "https://www.nikqi.li/beautiful-shot-modern-house-kitchen.jpg",
+              logo: "https://www.nikqi.li/logpnew.png",
+              image: "https://www.nikqi.li/logpnew.png",
               description:
-                "Professionelle Renovierungen in Buchs SG, der Schweiz und Liechtenstein. Küchenrenovierungen, Luxusbäder und Komplettumbauten mit Schweizer Qualitätsgarantie.",
-              telephone: "+41441234567",
-              email: "info@nik-renovation.ch",
+                "Badsanierungen, Heizungsbau, Wasserschadensanierung und Wärmepumpen in Sevelen SG, der Schweiz und Liechtenstein. 24h erreichbar, 7 Tage die Woche.",
+              telephone: "+41791326565",
+              email: "info@nikqi.li",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Bahnhofstrasse",
-                addressLocality: "Buchs",
-                postalCode: "9470",
+                streetAddress: "Bahnhofstrasse 25",
+                addressLocality: "Sevelen",
+                postalCode: "9475",
                 addressRegion: "SG",
                 addressCountry: "CH",
               },
               geo: {
                 "@type": "GeoCoordinates",
-                latitude: 47.1667,
-                longitude: 9.4333,
+                latitude: 47.1232,
+                longitude: 9.4862,
               },
               areaServed: [
                 { "@type": "State", name: "St. Gallen", sameAs: "https://www.wikidata.org/wiki/Q12715" },
@@ -123,17 +128,13 @@ export default function RootLayout({
                 { "@type": "Country", name: "Liechtenstein", sameAs: "https://www.wikidata.org/wiki/Q347" },
               ],
               serviceType: [
-                "Küchenrenovierung",
-                "Badezimmer Renovierung",
-                "Komplette Wohnungsrenovierung",
-                "Technische Installationen",
-                "Innenausbau",
-                "Design-Beratung",
+                "Badsanierungen & Umbauten",
+                "Heizungsbau & Modernisierung",
+                "Wasserschadensanierung",
+                "Wärmepumpen & erneuerbare Energien",
               ],
               priceRange: "CHF CHF CHF",
-              openingHours: "Mo-Fr 08:00-18:00",
-              foundingDate: "2009",
-              numberOfEmployees: { "@type": "QuantitativeValue", value: "10" },
+              openingHours: "Mo-Su 00:00-23:59",
               aggregateRating: {
                 "@type": "AggregateRating",
                 ratingValue: "5",
@@ -145,7 +146,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen">{children}</body>
+      <body className="min-h-screen font-sans">{children}</body>
     </html>
   )
 }
