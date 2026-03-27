@@ -100,6 +100,7 @@ export default function NikqiPage() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach(e => {
@@ -1018,21 +1019,6 @@ export default function NikqiPage() {
         </div>
       </footer>
 
-      {/* ── WHATSAPP FAB ── */}
-      <div
-        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
-          headerScrolled
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-      >
-        <button
-          onClick={() => window.open(`https://wa.me/41791326565?text=${encodeURIComponent("Hallo! Ich interessiere mich für Ihre Leistungen.")}`, "_blank")}
-          className="bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] p-4 shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </button>
-      </div>
 
       {/* ── LIGHTBOX ── */}
       {lightboxImg && (
