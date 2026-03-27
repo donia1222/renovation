@@ -645,23 +645,20 @@ export default function NikqiPage() {
                 NIKQI Badkultur & Wärme steht für höchste Qualität in Badsanierungen und Heizungsbau. Unser zertifiziertes Team in Sevelen realisiert Ihre Projekte mit Schweizer Präzision – 24 Stunden, 7 Tage die Woche.
               </p>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {[
                   { icon: <Shield className="h-5 w-5" />, title: "Garantierte Qualität", desc: "Auf alle Arbeiten und Materialien" },
                   { icon: <Zap className="h-5 w-5" />, title: "Schnelle Umsetzung", desc: "Termingerecht und präzise" },
                   { icon: <Award className="h-5 w-5" />, title: "Zertifiziert", desc: "Schweizer Qualitätsstandards" },
-                  { icon: <Clock className="h-5 w-5" />, title: "24/7 Erreichbar", desc: "7 Tage die Woche für Sie da" },
+                  { icon: <Clock className="h-5 w-5" />, title: "24/7 Erreichbar", desc: "7 Tage · 24 Stunden" },
                 ].map(({ icon, title, desc }, i) => (
-                  <div
-                    key={i}
-                    className="flex items-start gap-3 p-4 bg-white border border-[#D4C0A8] hover:border-[#B09070] group"
-                  >
-                    <div className="w-10 h-10 bg-[#F8F4EF] text-[#B09070] flex items-center justify-center flex-shrink-0 group-hover:bg-[#B09070] group-hover:text-[#1A1209]">
+                  <div key={i} className="flex flex-col gap-3 p-4 bg-[#1A1209] border-l-2 border-[#B09070]">
+                    <div className="w-9 h-9 bg-[#B09070]/15 text-[#B09070] flex items-center justify-center">
                       {icon}
                     </div>
                     <div>
-                      <div className="font-semibold text-[#1A1209] text-sm uppercase tracking-wide">{title}</div>
-                      <div className="text-[#8A7060] text-xs mt-0.5">{desc}</div>
+                      <div className="font-semibold text-[#F8F4EF] text-xs uppercase tracking-wide leading-tight">{title}</div>
+                      <div className="text-[#8A7060] text-xs mt-1">{desc}</div>
                     </div>
                   </div>
                 ))}
