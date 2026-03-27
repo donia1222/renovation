@@ -45,7 +45,8 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: #1A1209;
+    color: #F8F4EF;
     font-family: var(--font-poppins), 'Poppins', Arial, sans-serif;
   }
 }
@@ -71,45 +72,12 @@ html {
   background: linear-gradient(to bottom, #8A7060, #6A5040);
 }
 
-/* Scroll animations */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.scroll-animate.animate-in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Hover lift */
-.hover-lift {
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.hover-lift:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px -12px rgba(26, 18, 9, 0.2);
-}
-
-/* Elegant transitions */
-* {
-  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Focus states – NIKQI sand */
+/* Focus states */
 input:focus,
 select:focus,
 textarea:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(176, 144, 112, 0.2);
-  transform: translateY(-1px);
-}
-
-button {
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-button:active {
-  transform: scale(0.98);
 }
 
 /* Grid pattern */

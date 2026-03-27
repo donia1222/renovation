@@ -62,8 +62,8 @@ function useCounter(target: number, duration = 2000, active = false) {
 
 const projectImages = [
   "/proyect/PHOTO-2026-03-27-14-41-40.jpg",
-  "/proyect/PHOTO-2026-03-27-14-41-40 copia.jpg",
-  "/proyect/PHOTO-2026-03-27-14-41-40 copia 2.jpg",
+  "/proyect/PHOTO-2026-03-27-14-41-40%20copia.jpg",
+  "/proyect/PHOTO-2026-03-27-14-41-40%20copia%202.jpg",
   "/proyect/PHOTO-2026-03-27-13-24-45.jpg",
   "/proyect/0048fad8-351e-441c-8dd5-b9f98cd1104c.JPG",
   "/proyect/0ef3475c-966f-4b0c-b7cd-0652d8b89c41.JPG",
@@ -81,7 +81,6 @@ export default function NikqiPage() {
   const [headerScrolled, setHeaderScrolled] = useState(false)
   const [showAGB, setShowAGB] = useState(false)
   const [showDatenschutz, setShowDatenschutz] = useState(false)
-  const [visibleSections, setVisibleSections] = useState(new Set<string>())
   const [lightboxImg, setLightboxImg] = useState<string | null>(null)
 
   const [statsRef, statsInView] = useInView(0.3)
@@ -101,25 +100,10 @@ export default function NikqiPage() {
   }, [])
 
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach(e => {
-        if (e.isIntersecting && e.target.id) {
-          setVisibleSections(prev => new Set([...prev, e.target.id]))
-        }
-      }),
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
-    )
-    document.querySelectorAll("[data-animate]").forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  }, [])
-
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
     setIsMobileMenuOpen(false)
   }
-
-  const v = (id: string) => visibleSections.has(id)
 
   const navItems = [
     { label: "Dienstleistungen", id: "dienstleistungen" },
@@ -141,7 +125,7 @@ export default function NikqiPage() {
 
       {/* ── HEADER ── */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 ${
           headerScrolled
             ? "bg-[#1A1209]/95 backdrop-blur-xl border-b border-[#B09070]/20 shadow-2xl"
             : "bg-transparent"
@@ -160,17 +144,17 @@ export default function NikqiPage() {
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className="text-[#F8F4EF]/80 hover:text-[#B09070] text-sm font-semibold tracking-widest uppercase transition-colors duration-300 relative group"
+                className="text-[#F8F4EF]/80 hover:text-[#B09070] text-sm font-semibold tracking-widest uppercase relative group"
               >
                 {label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#B09070] group-hover:w-full transition-all duration-300" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#B09070] group-hover:w-full" />
               </button>
             ))}
           </nav>
 
           <button
             onClick={() => scrollTo("kontakt")}
-            className="hidden md:flex items-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold rounded-none px-6 py-2.5 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105"
+            className="hidden md:flex items-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold rounded-none px-6 py-2.5 text-sm tracking-widest uppercase hover:scale-105"
           >
             Angebot
           </button>
@@ -218,12 +202,12 @@ export default function NikqiPage() {
                 <button
                   key={id}
                   onClick={() => scrollTo(id)}
-                  className="flex items-center gap-3 w-full px-4 py-3 text-[#D4C0A8] hover:text-[#F8F4EF] hover:bg-[#B09070]/10 border-l-2 border-transparent hover:border-[#B09070] transition-all duration-300 group"
+                  className="flex items-center gap-3 w-full px-4 py-3 text-[#D4C0A8] hover:text-[#F8F4EF] hover:bg-[#B09070]/10 border-l-2 border-transparent hover:border-[#B09070] group"
                   style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: `${i * 60 + 80}ms` }}
                 >
                   <span className="text-[#B09070]">{icon}</span>
                   <span className="text-sm font-semibold tracking-widest uppercase flex-1 text-left">{label}</span>
-                  <ArrowRight className="h-3 w-3 text-[#B09070] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+                  <ArrowRight className="h-3 w-3 text-[#B09070] opacity-0 group-hover:opacity-100 group-hover:translate-x-1" />
                 </button>
               ))}
             </nav>
@@ -232,7 +216,7 @@ export default function NikqiPage() {
             <div className="mx-5 border-t border-[#B09070]/20" />
 
             {/* Contact info */}
-            <div className="px-5 py-5 space-y-3" style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: "320ms" }}>
+            <div className="px-5 py-5 space-y-3" >
               <p className="text-[#8A7060] text-[10px] font-semibold uppercase tracking-[0.2em] mb-3">Kontakt</p>
               <a href="tel:+41791326565" className="flex items-center gap-3 text-[#D4C0A8] hover:text-[#B09070] transition-colors group">
                 <span className="w-8 h-8 bg-[#B09070]/10 flex items-center justify-center text-[#B09070] group-hover:bg-[#B09070]/20 transition-colors">
@@ -273,10 +257,10 @@ export default function NikqiPage() {
             </div>
 
             {/* CTA */}
-            <div className="mt-auto px-4 pb-6 pt-3 border-t border-[#B09070]/20 space-y-2" style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: "420ms" }}>
+            <div className="mt-auto px-4 pb-6 pt-3 border-t border-[#B09070]/20 space-y-2" >
               <button
                 onClick={() => scrollTo("kontakt")}
-                className="flex items-center justify-center gap-2 w-full bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold py-3 text-sm tracking-widest uppercase transition-all duration-300"
+                className="flex items-center justify-center gap-2 w-full bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold py-3 text-sm tracking-widest uppercase"
               >
                 Angebot anfordern
                 <ArrowRight className="h-4 w-4" />
@@ -285,7 +269,7 @@ export default function NikqiPage() {
                 href="https://wa.me/41791326565"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full border border-[#B09070]/40 text-[#B09070] hover:border-[#B09070] font-semibold py-2.5 text-sm tracking-widest uppercase transition-all duration-300"
+                className="flex items-center justify-center gap-2 w-full border border-[#B09070]/40 text-[#B09070] hover:border-[#B09070] font-semibold py-2.5 text-sm tracking-widest uppercase"
               >
                 <MessageCircle className="h-4 w-4" />
                 WhatsApp
@@ -297,13 +281,11 @@ export default function NikqiPage() {
 
       {/* ── HERO ── */}
       <section className="relative bg-[#1A1209] overflow-hidden flex items-center pt-16">
-        {/* Warm glow blobs */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#B09070]/15 rounded-full blur-[140px]" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#8A7060]/10 rounded-full blur-[120px]" />
+        {/* Warm glow – only desktop */}
+        <div className="absolute inset-0 pointer-events-none hidden lg:block">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#B09070]/10 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#8A7060]/8 rounded-full blur-[80px]" />
         </div>
-        {/* Subtle grid */}
-        <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-30" />
 
         <div className="container mx-auto px-6 relative z-10 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -311,27 +293,10 @@ export default function NikqiPage() {
           <div className="order-2 relative">
             <div className="grid grid-cols-2 gap-2">
               {/* Top row: left normal, right shifted down */}
-              <img
-                src="/proyect/PHOTO-2026-03-27-14-41-40.jpg"
-                alt="Projekt"
-                className="w-full aspect-square object-cover"
-              />
-              <img
-                src="/proyect/PHOTO-2026-03-27-14-41-40 copia.jpg"
-                alt="Projekt"
-                className="w-full aspect-square object-cover mt-8"
-              />
-              {/* Bottom row: left shifted up, right normal */}
-              <img
-                src="/proyect/PHOTO-2026-03-27-13-24-45.jpg"
-                alt="Projekt"
-                className="w-full aspect-square object-cover -mt-4"
-              />
-              <img
-                src="/proyect/0048fad8-351e-441c-8dd5-b9f98cd1104c.JPG"
-                alt="Projekt"
-                className="w-full aspect-square object-cover mt-2"
-              />
+              <img src="/proyect/PHOTO-2026-03-27-14-41-40.jpg" alt="Projekt" loading="eager" decoding="async" className="w-full aspect-square object-cover" />
+              <img src="/proyect/PHOTO-2026-03-27-14-41-40%20copia.jpg" alt="Projekt" loading="eager" decoding="async" className="w-full aspect-square object-cover mt-8" />
+              <img src="/proyect/PHOTO-2026-03-27-13-24-45.jpg" alt="Projekt" loading="eager" decoding="async" className="w-full aspect-square object-cover -mt-4" />
+              <img src="/proyect/0048fad8-351e-441c-8dd5-b9f98cd1104c.JPG" alt="Projekt" loading="eager" decoding="async" className="w-full aspect-square object-cover mt-2" />
             </div>
             <div className="absolute -bottom-3 -left-3 bg-[#B09070] px-4 py-2.5 shadow-xl">
               <div className="text-[#1A1209] font-semibold text-base">24/7</div>
@@ -366,7 +331,7 @@ export default function NikqiPage() {
                 <button
                   key={label}
                   onClick={() => scrollTo("dienstleistungen")}
-                  className="flex items-center gap-1.5 bg-[#B09070]/15 hover:bg-[#B09070]/30 border border-[#B09070]/30 hover:border-[#B09070] text-[#D4C0A8] hover:text-[#F8F4EF] text-xs font-semibold px-3 py-1.5 transition-all duration-300 tracking-wide"
+                  className="flex items-center gap-1.5 bg-[#B09070]/15 hover:bg-[#B09070]/30 border border-[#B09070]/30 hover:border-[#B09070] text-[#D4C0A8] hover:text-[#F8F4EF] text-xs font-semibold px-3 py-1.5 tracking-wide"
                 >
                   <span className="text-[#B09070]">{icon}</span>
                   {label}
@@ -377,14 +342,14 @@ export default function NikqiPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => scrollTo("kontakt")}
-                className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105 group"
+                className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase hover:scale-105 group"
               >
                 Kostenlose Beratung
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => scrollTo("projekte")}
-                className="flex items-center justify-center gap-2 border border-[#B09070]/40 text-[#F8F4EF] hover:border-[#B09070] hover:text-[#B09070] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300 bg-transparent"
+                className="flex items-center justify-center gap-2 border border-[#B09070]/40 text-[#F8F4EF] hover:border-[#B09070] hover:text-[#B09070] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase bg-transparent"
               >
                 Projekte ansehen
               </button>
@@ -411,7 +376,7 @@ export default function NikqiPage() {
 
       {/* ── MARQUEE STRIP ── */}
       <div className="bg-[#B09070] py-3.5 overflow-hidden">
-        <div className="flex whitespace-nowrap" style={{ animation: "marquee 30s linear infinite" }}>
+        <div className="flex whitespace-nowrap" >
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex items-center gap-10 px-10 flex-shrink-0">
               {[
@@ -441,7 +406,7 @@ export default function NikqiPage() {
               { count: c4, suffix: " Tage", label: "Erreichbar / Woche", icon: <Users className="h-5 w-5" /> },
             ].map(({ count, suffix, label, icon }, i) => (
               <div key={i} className="text-center group">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#B09070]/20 text-[#B09070] mb-4 group-hover:bg-[#B09070]/30 transition-colors duration-300">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#B09070]/20 text-[#B09070] mb-4 group-hover:bg-[#B09070]/30">
                   {icon}
                 </div>
                 <div className="text-5xl lg:text-6xl font-semibold text-[#F8F4EF] mb-2 tabular-nums">
@@ -457,12 +422,12 @@ export default function NikqiPage() {
       {/* ── SERVICES ── */}
       <section
         id="dienstleistungen"
-        data-animate
+       
         className="py-24 bg-[#F8F4EF]"
       >
         <div className="container mx-auto px-6">
           <div
-            className={`max-w-xl mb-16 transition-all duration-700 ${v("dienstleistungen") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`max-w-xl mb-16 `}
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#B09070]" />
@@ -510,18 +475,18 @@ export default function NikqiPage() {
             ].map((service, index) => (
               <div
                 key={index}
-                className={`group relative p-8 overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${
+                className={`group relative p-8 overflow-hidden hover:-translate-y-1 hover:shadow-2xl ${
                   service.dark
                     ? "bg-[#1A1209] text-[#F8F4EF]"
                     : "bg-white border border-[#D4C0A8] text-[#1A1209]"
-                } ${v("dienstleistungen") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+                } `}
                 style={{ transitionDelay: `${index * 80}ms` }}
               >
                 <div
                   className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${service.dark ? "bg-[#B09070]/20" : "bg-[#B09070]/10"}`}
                 />
                 <div
-                  className={`inline-flex items-center justify-center w-14 h-14 mb-6 transition-all duration-300 group-hover:scale-110 ${service.dark ? "bg-[#B09070]/20 text-[#B09070]" : "bg-[#F8F4EF] text-[#B09070]"}`}
+                  className={`inline-flex items-center justify-center w-14 h-14 mb-6 group-hover:scale-110 ${service.dark ? "bg-[#B09070]/20 text-[#B09070]" : "bg-[#F8F4EF] text-[#B09070]"}`}
                 >
                   {service.icon}
                 </div>
@@ -539,7 +504,7 @@ export default function NikqiPage() {
                     </li>
                   ))}
                 </ul>
-                <div className={`mt-6 flex items-center gap-1 text-xs font-semibold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-0 group-hover:translate-x-1 ${service.dark ? "text-[#B09070]" : "text-[#B09070]"}`}>
+                <div className={`mt-6 flex items-center gap-1 text-xs font-semibold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 ${service.dark ? "text-[#B09070]" : "text-[#B09070]"}`}>
                   Mehr erfahren <ArrowRight className="h-3 w-3" />
                 </div>
               </div>
@@ -551,12 +516,12 @@ export default function NikqiPage() {
       {/* ── PROCESS ── */}
       <section
         id="prozess"
-        data-animate
+       
         className="py-24 bg-[#EDE6DA]"
       >
         <div className="container mx-auto px-6">
           <div
-            className={`text-center max-w-2xl mx-auto mb-16 transition-all duration-700 ${v("prozess") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`text-center max-w-2xl mx-auto mb-16 `}
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#B09070]" />
@@ -582,10 +547,10 @@ export default function NikqiPage() {
             ].map(({ step, title, desc, icon }, i) => (
               <div
                 key={step}
-                className={`relative z-10 flex flex-col items-center text-center transition-all duration-700 ${v("prozess") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+                className={`relative z-10 flex flex-col items-center text-center `}
                 style={{ transitionDelay: `${i * 150}ms` }}
               >
-                <div className="w-16 h-16 bg-[#B09070] text-[#1A1209] flex items-center justify-center shadow-lg mb-6 hover:scale-110 transition-transform duration-300 hover:bg-[#8A7060]">
+                <div className="w-16 h-16 bg-[#B09070] text-[#1A1209] flex items-center justify-center shadow-lg mb-6 hover:scale-110 hover:bg-[#8A7060]">
                   {icon}
                 </div>
                 <div className="text-xs font-semibold text-[#B09070] tracking-[0.2em] mb-2 uppercase">{step}</div>
@@ -600,12 +565,12 @@ export default function NikqiPage() {
       {/* ── PROJECTS ── */}
       <section
         id="projekte"
-        data-animate
+       
         className="py-24 bg-[#1A1209]"
       >
         <div className="container mx-auto px-6">
           <div
-            className={`flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 transition-all duration-700 ${v("projekte") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 `}
           >
             <div>
               <div className="flex items-center gap-3 mb-4">
@@ -627,16 +592,16 @@ export default function NikqiPage() {
               <div
                 key={index}
                 onClick={() => setLightboxImg(img)}
-                className={`group relative overflow-hidden cursor-pointer aspect-square transition-all duration-700 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60 ${v("projekte") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+                className={`group relative overflow-hidden cursor-pointer aspect-square hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60 `}
                 style={{ transitionDelay: `${index * 60}ms` }}
               >
                 <img
                   src={img}
                   alt={`Projekt ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A1209]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-3 right-3 w-8 h-8 bg-[#B09070] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-y-2 group-hover:translate-y-0">
+                <div className="absolute top-3 right-3 w-8 h-8 bg-[#B09070] flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-y-2 group-hover:translate-y-0">
                   <ArrowUpRight className="h-4 w-4 text-[#1A1209]" />
                 </div>
               </div>
@@ -644,11 +609,11 @@ export default function NikqiPage() {
           </div>
 
           <div
-            className={`mt-10 text-center transition-all duration-700 delay-300 ${v("projekte") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`mt-10 text-center delay-300 `}
           >
             <button
               onClick={() => scrollTo("kontakt")}
-              className="inline-flex items-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold px-8 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold px-8 py-4 text-sm tracking-widest uppercase hover:scale-105 group"
             >
               Ihr Projekt starten
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -660,13 +625,13 @@ export default function NikqiPage() {
       {/* ── WHY US ── */}
       <section
         id="ueber-uns"
-        data-animate
+       
         className="py-24 bg-[#F8F4EF]"
       >
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div
-              className={`transition-all duration-700 ${v("ueber-uns") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className=""
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 bg-[#B09070]" />
@@ -689,9 +654,9 @@ export default function NikqiPage() {
                 ].map(({ icon, title, desc }, i) => (
                   <div
                     key={i}
-                    className="flex items-start gap-3 p-4 bg-white border border-[#D4C0A8] hover:border-[#B09070] transition-colors duration-300 group"
+                    className="flex items-start gap-3 p-4 bg-white border border-[#D4C0A8] hover:border-[#B09070] group"
                   >
-                    <div className="w-10 h-10 bg-[#F8F4EF] text-[#B09070] flex items-center justify-center flex-shrink-0 group-hover:bg-[#B09070] group-hover:text-[#1A1209] transition-all duration-300">
+                    <div className="w-10 h-10 bg-[#F8F4EF] text-[#B09070] flex items-center justify-center flex-shrink-0 group-hover:bg-[#B09070] group-hover:text-[#1A1209]">
                       {icon}
                     </div>
                     <div>
@@ -704,7 +669,7 @@ export default function NikqiPage() {
             </div>
 
             <div
-              className={`relative transition-all duration-700 delay-200 ${v("ueber-uns") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`relative delay-200 `}
             >
               <div className="flex flex-col gap-3">
                 <div className="relative overflow-hidden">
@@ -729,12 +694,12 @@ export default function NikqiPage() {
       {/* ── TESTIMONIALS ── */}
       <section
         id="testimonials"
-        data-animate
+       
         className="py-24 bg-[#EDE6DA]"
       >
         <div className="container mx-auto px-6">
           <div
-            className={`text-center max-w-2xl mx-auto mb-16 transition-all duration-700 ${v("testimonials") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`text-center max-w-2xl mx-auto mb-16 `}
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#B09070]" />
@@ -770,7 +735,7 @@ export default function NikqiPage() {
             ].map((testimonial, index) => (
               <div
                 key={index}
-                className={`bg-white border border-[#D4C0A8] p-8 hover:border-[#B09070] hover:shadow-xl transition-all duration-500 hover:-translate-y-1 ${v("testimonials") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+                className={`bg-white border border-[#D4C0A8] p-8 hover:border-[#B09070] hover:shadow-xl hover:-translate-y-1 `}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="flex gap-1 mb-6">
@@ -810,13 +775,13 @@ export default function NikqiPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollTo("kontakt")}
-              className="inline-flex items-center justify-center gap-2 bg-[#1A1209] hover:bg-[#0D0905] text-[#B09070] font-semibold px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105 group"
+              className="inline-flex items-center justify-center gap-2 bg-[#1A1209] hover:bg-[#0D0905] text-[#B09070] font-semibold px-10 py-4 text-sm tracking-widest uppercase hover:scale-105 group"
             >
               Jetzt Angebot anfordern
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </button>
             <a href="tel:+41791326565">
-              <button className="inline-flex items-center justify-center gap-2 border-2 border-[#1A1209] text-[#1A1209] hover:bg-[#1A1209] hover:text-[#B09070] font-semibold px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300">
+              <button className="inline-flex items-center justify-center gap-2 border-2 border-[#1A1209] text-[#1A1209] hover:bg-[#1A1209] hover:text-[#B09070] font-semibold px-10 py-4 text-sm tracking-widest uppercase">
                 <Phone className="h-4 w-4" />
                 079 132 65 65
               </button>
@@ -828,14 +793,14 @@ export default function NikqiPage() {
       {/* ── CONTACT ── */}
       <section
         id="kontakt"
-        data-animate
+       
         className="py-24 bg-[#F8F4EF]"
       >
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left */}
             <div
-              className={`transition-all duration-700 ${v("kontakt") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className=""
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 bg-[#B09070]" />
@@ -857,14 +822,14 @@ export default function NikqiPage() {
                   { icon: <MapPin className="h-5 w-5" />, label: "Adresse", value: "Bahnhofstrasse 25, 9475 Sevelen, Schweiz", href: null },
                   { icon: <Clock className="h-5 w-5" />, label: "Erreichbarkeit", value: "24 Stunden · 7 Tage / Woche", href: null },
                 ].map(({ icon, label, value, href }) => (
-                  <div key={label} className="flex items-start gap-4 p-4 hover:bg-[#EDE6DA] transition-colors duration-300 group">
-                    <div className="w-11 h-11 bg-[#EDE6DA] text-[#B09070] flex items-center justify-center flex-shrink-0 group-hover:bg-[#B09070] group-hover:text-[#1A1209] transition-all duration-300">
+                  <div key={label} className="flex items-start gap-4 p-4 hover:bg-[#EDE6DA] group">
+                    <div className="w-11 h-11 bg-[#EDE6DA] text-[#B09070] flex items-center justify-center flex-shrink-0 group-hover:bg-[#B09070] group-hover:text-[#1A1209]">
                       {icon}
                     </div>
                     <div>
                       <div className="text-[#8A7060] text-xs font-semibold uppercase tracking-wider mb-0.5">{label}</div>
                       {href ? (
-                        <a href={href} className="text-[#1A1209] font-semibold hover:text-[#B09070] transition-colors duration-200 text-sm">{value}</a>
+                        <a href={href} className="text-[#1A1209] font-semibold hover:text-[#B09070] text-sm">{value}</a>
                       ) : (
                         <span className="text-[#1A1209] font-semibold text-sm">{value}</span>
                       )}
@@ -876,7 +841,7 @@ export default function NikqiPage() {
 
             {/* Right: Form */}
             <div
-              className={`bg-[#1A1209] p-8 transition-all duration-700 delay-200 ${v("kontakt") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`bg-[#1A1209] p-8 delay-200 `}
             >
               <h3 className="text-2xl font-semibold text-[#F8F4EF] mb-8 uppercase tracking-wide">Angebot anfordern</h3>
               <form className="space-y-5">
@@ -885,7 +850,7 @@ export default function NikqiPage() {
                     <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Name</label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] transition-all duration-300 text-sm"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                       placeholder="Ihr Name"
                     />
                   </div>
@@ -893,7 +858,7 @@ export default function NikqiPage() {
                     <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Telefon</label>
                     <input
                       type="tel"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] transition-all duration-300 text-sm"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                       placeholder="Ihre Nummer"
                     />
                   </div>
@@ -902,13 +867,13 @@ export default function NikqiPage() {
                   <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">E-Mail</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] transition-all duration-300 text-sm"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                     placeholder="ihre@email.com"
                   />
                 </div>
                 <div>
                   <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Leistung</label>
-                  <select className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] transition-all duration-300 text-sm">
+                  <select className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm">
                     <option value="" className="bg-[#1A1209]">Leistung wählen</option>
                     <option value="bad" className="bg-[#1A1209]">Badsanierung & Umbau</option>
                     <option value="heizung" className="bg-[#1A1209]">Heizungsbau & Modernisierung</option>
@@ -921,13 +886,13 @@ export default function NikqiPage() {
                   <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Nachricht</label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] transition-all duration-300 text-sm resize-none"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm resize-none"
                     placeholder="Erzählen Sie uns von Ihrem Projekt..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:shadow-lg group"
+                  className="w-full flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold py-4 text-sm tracking-widest uppercase hover:shadow-lg group"
                 >
                   Anfrage absenden
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -955,7 +920,7 @@ export default function NikqiPage() {
                   <li key={item}>
                     <button
                       onClick={() => scrollTo("dienstleistungen")}
-                      className="text-[#8A7060] hover:text-[#B09070] transition-colors duration-300 text-sm text-left"
+                      className="text-[#8A7060] hover:text-[#B09070] text-sm text-left"
                     >{item}</button>
                   </li>
                 ))}
@@ -973,7 +938,7 @@ export default function NikqiPage() {
                   <li key={id}>
                     <button
                       onClick={() => scrollTo(id)}
-                      className="text-[#8A7060] hover:text-[#B09070] transition-colors duration-300 text-sm"
+                      className="text-[#8A7060] hover:text-[#B09070] text-sm"
                     >{label}</button>
                   </li>
                 ))}
@@ -983,13 +948,13 @@ export default function NikqiPage() {
               <h4 className="text-[#F8F4EF] font-semibold mb-5 text-xs uppercase tracking-widest">Kontakt</h4>
               <ul className="space-y-3 text-sm text-[#8A7060]">
                 <li>
-                  <a href="tel:+41791326565" className="flex items-center gap-2 hover:text-[#B09070] transition-colors duration-300">
+                  <a href="tel:+41791326565" className="flex items-center gap-2 hover:text-[#B09070]">
                     <Phone className="h-4 w-4 flex-shrink-0" />
                     079 132 65 65
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@nikqi.li" className="flex items-center gap-2 hover:text-[#B09070] transition-colors duration-300">
+                  <a href="mailto:info@nikqi.li" className="flex items-center gap-2 hover:text-[#B09070]">
                     <Mail className="h-4 w-4 flex-shrink-0" />
                     info@nikqi.li
                   </a>
