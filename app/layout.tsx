@@ -86,6 +86,13 @@ export default function RootLayout({
   return (
     <html lang="de" className={poppins.variable}>
       <head>
+        <meta name="theme-color" content="#1A1209" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#1A1209" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#1A1209" />
+        <meta name="msapplication-navbutton-color" content="#1A1209" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/logpnew.png" type="image/png" sizes="any" />
         <link rel="apple-touch-icon" href="/logpnew.png" />
         <link rel="canonical" href="https://www.nikqi.li" />
@@ -146,7 +153,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen font-sans">{children}</body>
+      <body className="min-h-screen font-sans" style={{ backgroundColor: "#1A1209" }}>{children}</body>
     </html>
   )
 }

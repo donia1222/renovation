@@ -53,6 +53,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  background-color: #1A1209;
 }
 
 /* Custom scrollbar – NIKQI sand */

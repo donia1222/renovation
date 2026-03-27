@@ -340,7 +340,7 @@ export default function NikqiPage() {
           <div className="order-1 space-y-6">
             <div className="flex items-center gap-3">
               <div className="h-px w-12 bg-[#B09070]" />
-              <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase">Buchs SG · Schweiz · Liechtenstein</span>
+              <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase whitespace-nowrap">Sevelen · Schweiz · Liechtenstein</span>
             </div>
 
             <h1 className="text-5xl lg:text-7xl font-semibold text-[#F8F4EF] leading-[1.02] tracking-tight uppercase">
@@ -1019,7 +1019,13 @@ export default function NikqiPage() {
       </footer>
 
       {/* ── WHATSAPP FAB ── */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ${
+          headerScrolled
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      >
         <button
           onClick={() => window.open(`https://wa.me/41791326565?text=${encodeURIComponent("Hallo! Ich interessiere mich für Ihre Leistungen.")}`, "_blank")}
           className="bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] p-4 shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center"
