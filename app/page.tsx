@@ -99,6 +99,24 @@ export default function NikqiPage() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  // Single IntersectionObserver for all reveal elements — fires once per element
+  useEffect(() => {
+    const els = document.querySelectorAll<HTMLElement>('.reveal')
+    if (!els.length) return
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('revealed')
+            obs.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+    )
+    els.forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [])
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
@@ -285,7 +303,7 @@ export default function NikqiPage() {
         <div className="container mx-auto px-6 relative z-10 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Images – visible on all screens, below text on mobile / right column on desktop */}
-          <div className="order-2 relative">
+          <div className="order-2 relative hero-item" style={{ animationDelay: '150ms' }}>
             <div className="grid grid-cols-2 gap-2">
               {/* Top row: left normal, right shifted down */}
               <img src="/proyect/PHOTO-2026-03-27-14-41-40.jpg" alt="Projekt" loading="eager" decoding="async" className="w-full aspect-square object-cover" />
@@ -299,24 +317,24 @@ export default function NikqiPage() {
             </div>
           </div>
           <div className="order-1 space-y-6">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 hero-item" style={{ animationDelay: '0ms' }}>
               <div className="h-px w-12 bg-[#B09070]" />
               <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase whitespace-nowrap">Sevelen · Schweiz · Liechtenstein</span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-semibold text-[#1A1209] leading-[1.02] tracking-tight uppercase">
+            <h1 className="text-5xl lg:text-7xl font-semibold text-[#1A1209] leading-[1.02] tracking-tight uppercase hero-item" style={{ animationDelay: '110ms' }}>
               Badkultur{" "}
               <span className="text-[#B09070]">&</span>
               <br />
               Wärme.
             </h1>
 
-            <p className="text-[#6A5040] text-lg leading-relaxed max-w-xl">
+            <p className="text-[#6A5040] text-lg leading-relaxed max-w-xl hero-item" style={{ animationDelay: '230ms' }}>
               Ihr Spezialist in Sevelen – für Bad, Heizung und Wärmepumpen. Schweizer Präzision, 24/7 erreichbar.
             </p>
 
             {/* Service chips */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 hero-item" style={{ animationDelay: '350ms' }}>
               {[
                 { icon: <Droplets className="h-3.5 w-3.5" />, label: "Badsanierungen & Umbauten" },
                 { icon: <Flame className="h-3.5 w-3.5" />, label: "Heizungsbau & Modernisierung" },
@@ -334,7 +352,7 @@ export default function NikqiPage() {
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 hero-item" style={{ animationDelay: '460ms' }}>
               <button
                 onClick={() => scrollTo("kontakt")}
                 className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#8A7060] text-[#1A1209] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase group"
@@ -351,7 +369,7 @@ export default function NikqiPage() {
             </div>
 
             {/* Stats row */}
-            <div className="flex items-center gap-10 pt-2 border-t border-[#B09070]/30">
+            <div className="flex items-center gap-10 pt-2 border-t border-[#B09070]/30 hero-item" style={{ animationDelay: '570ms' }}>
               {[
                 { value: "200+", label: "Projekte" },
                 { value: "10+", label: "Jahre" },
@@ -399,9 +417,7 @@ export default function NikqiPage() {
         className="py-24 bg-[#F8F4EF]"
       >
         <div className="container mx-auto px-6">
-          <div
-            className={`max-w-xl mb-16 `}
-          >
+          <div className="max-w-xl mb-16 reveal">
             <div className="flex items-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#B09070]" />
               <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase">Unsere Leistungen</span>
@@ -448,7 +464,7 @@ export default function NikqiPage() {
             ].map((service, index) => (
               <div
                 key={index}
-                className={`group relative p-8 overflow-hidden hover:-translate-y-1 hover:shadow-2xl ${
+                className={`group relative p-8 overflow-hidden hover:-translate-y-1 hover:shadow-2xl reveal ${
                   service.dark
                     ? "bg-[#1A1209] text-[#F8F4EF]"
                     : "bg-white border border-[#D4C0A8] text-[#1A1209]"
@@ -494,7 +510,7 @@ export default function NikqiPage() {
       >
         <div className="container mx-auto px-6">
           <div
-            className={`text-center max-w-2xl mx-auto mb-16 `}
+            className="text-center max-w-2xl mx-auto mb-16 reveal"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#B09070]" />
@@ -520,7 +536,7 @@ export default function NikqiPage() {
             ].map(({ step, title, desc, icon }, i) => (
               <div
                 key={step}
-                className={`relative z-10 flex flex-col items-center text-center `}
+                className="relative z-10 flex flex-col items-center text-center reveal"
                 style={{ transitionDelay: `${i * 150}ms` }}
               >
                 <div className="w-16 h-16 bg-[#B09070] text-[#1A1209] flex items-center justify-center shadow-lg mb-6 hover:scale-110 hover:bg-[#8A7060]">
@@ -543,7 +559,7 @@ export default function NikqiPage() {
       >
         <div className="container mx-auto px-6">
           <div
-            className={`flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 `}
+            className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal"
           >
             <div>
               <div className="flex items-center gap-3 mb-4">
@@ -565,7 +581,7 @@ export default function NikqiPage() {
               <div
                 key={index}
                 onClick={() => setLightboxImg(img)}
-                className={`group relative overflow-hidden cursor-pointer aspect-square hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60 `}
+                className={`group relative overflow-hidden cursor-pointer aspect-square hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/60 reveal`}
                 style={{ transitionDelay: `${index * 60}ms` }}
               >
                 <img
@@ -604,7 +620,7 @@ export default function NikqiPage() {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div
-              className=""
+              className="reveal"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 bg-[#B09070]" />
@@ -618,20 +634,20 @@ export default function NikqiPage() {
                 NIKQI Badkultur & Wärme steht für höchste Qualität in Badsanierungen und Heizungsbau. Unser zertifiziertes Team in Sevelen realisiert Ihre Projekte mit Schweizer Präzision – 24 Stunden, 7 Tage die Woche.
               </p>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-3">
                 {[
                   { icon: <Shield className="h-5 w-5" />, title: "Garantierte Qualität", desc: "Auf alle Arbeiten und Materialien" },
                   { icon: <Zap className="h-5 w-5" />, title: "Schnelle Umsetzung", desc: "Termingerecht und präzise" },
                   { icon: <Award className="h-5 w-5" />, title: "Zertifiziert", desc: "Schweizer Qualitätsstandards" },
                   { icon: <Clock className="h-5 w-5" />, title: "24/7 Erreichbar", desc: "7 Tage · 24 Stunden" },
                 ].map(({ icon, title, desc }, i) => (
-                  <div key={i} className="flex flex-col gap-3 p-4 bg-[#1A1209] border-l-2 border-[#B09070]">
-                    <div className="w-9 h-9 bg-[#B09070]/15 text-[#B09070] flex items-center justify-center">
+                  <div key={i} className="flex items-center gap-4 p-4 border-b border-[#B09070]/20 reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+                    <div className="w-10 h-10 bg-[#B09070]/15 text-[#B09070] flex items-center justify-center flex-shrink-0">
                       {icon}
                     </div>
                     <div>
-                      <div className="font-semibold text-[#F8F4EF] text-xs uppercase tracking-wide leading-tight">{title}</div>
-                      <div className="text-[#8A7060] text-xs mt-1">{desc}</div>
+                      <div className="font-semibold text-[#1A1209] text-sm uppercase tracking-wide">{title}</div>
+                      <div className="text-[#6A5040] text-xs mt-0.5">{desc}</div>
                     </div>
                   </div>
                 ))}
@@ -639,7 +655,7 @@ export default function NikqiPage() {
             </div>
 
             <div
-              className={`relative delay-200 `}
+              className="relative reveal"
             >
               <div className="flex flex-col gap-3">
                 <div className="relative overflow-hidden">
@@ -669,7 +685,7 @@ export default function NikqiPage() {
       >
         <div className="container mx-auto px-6">
           <div
-            className={`text-center max-w-2xl mx-auto mb-16 `}
+            className="text-center max-w-2xl mx-auto mb-16 reveal"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#B09070]" />
@@ -705,7 +721,7 @@ export default function NikqiPage() {
             ].map((testimonial, index) => (
               <div
                 key={index}
-                className={`bg-white border border-[#D4C0A8] p-8 hover:border-[#B09070] hover:shadow-xl hover:-translate-y-1 `}
+                className={`bg-white border border-[#D4C0A8] p-8 hover:border-[#B09070] hover:shadow-xl hover:-translate-y-1 reveal`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="flex gap-1 mb-6">
@@ -734,7 +750,7 @@ export default function NikqiPage() {
       {/* ── CTA BANNER ── */}
       <section className="bg-[#B09070] py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-20" />
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="container mx-auto px-6 relative z-10 text-center reveal">
           <h2 className="text-4xl lg:text-6xl font-semibold text-[#1A1209] mb-6 uppercase">
             Bereit für Ihr{" "}
             <span className="text-white">Projekt?</span>
@@ -770,7 +786,7 @@ export default function NikqiPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             {/* Left */}
             <div
-              className=""
+              className="reveal"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-8 bg-[#B09070]" />
@@ -811,7 +827,7 @@ export default function NikqiPage() {
 
             {/* Right: Form */}
             <div
-              className={`bg-[#1A1209] p-8 delay-200 `}
+              className="bg-[#1A1209] p-8 reveal"
             >
               <h3 className="text-2xl font-semibold text-[#F8F4EF] mb-8 uppercase tracking-wide">Angebot anfordern</h3>
               <form className="space-y-5">
