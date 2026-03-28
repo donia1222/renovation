@@ -83,6 +83,9 @@ export default function NikqiPage() {
   const [showDatenschutz, setShowDatenschutz] = useState(false)
   const [lightboxImg, setLightboxImg] = useState<string | null>(null)
 
+  const heroSectionRef = useRef<HTMLElement>(null)
+  const [pastHero, setPastHero] = useState(false)
+
   const [statsRef, statsInView] = useInView(0.3)
   const c1 = useCounter(200, 2000, statsInView)
   const c2 = useCounter(10, 1800, statsInView)
@@ -91,13 +94,18 @@ export default function NikqiPage() {
 
   useEffect(() => {
     const onScroll = () => {
+      const y = window.pageYOffset
       const total = document.documentElement.scrollHeight - window.innerHeight
-      setScrollProgress((window.pageYOffset / total) * 100)
-      setHeaderScrolled(window.pageYOffset > 60)
+      setScrollProgress((y / total) * 100)
+      setHeaderScrolled(y > 60)
+      if (heroSectionRef.current) {
+        setPastHero(y > 120)
+      }
     }
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
 
   // Single IntersectionObserver for all reveal elements — fires once per element
   useEffect(() => {
@@ -153,7 +161,7 @@ export default function NikqiPage() {
           <img
             src="/logpnew.png"
             alt="NIKQI Badkultur & Wärme"
-            className="h-10 w-auto cursor-pointer"
+            className={`h-10 w-auto cursor-pointer transition-all duration-500 ${pastHero ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           />
 
@@ -298,7 +306,7 @@ export default function NikqiPage() {
       )}
 
       {/* ── HERO ── */}
-      <section className="relative bg-[#EDE6DA] overflow-hidden flex items-center pt-16">
+      <section ref={heroSectionRef} className="relative bg-[#EDE6DA] overflow-hidden flex items-center pt-16">
 
         <div className="container mx-auto px-6 relative z-10 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -317,6 +325,12 @@ export default function NikqiPage() {
             </div>
           </div>
           <div className="order-1 space-y-6">
+            <img
+              src="/logpnew.png"
+              alt="NIKQI"
+              className="h-24 w-auto hero-item"
+              style={{ animationDelay: '0ms' }}
+            />
             <div className="flex items-center gap-3 hero-item" style={{ animationDelay: '0ms' }}>
               <div className="h-px w-12 bg-[#B09070]" />
               <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase whitespace-nowrap">Sevelen · Schweiz · Liechtenstein</span>
