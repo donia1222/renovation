@@ -306,7 +306,7 @@ export default function NikqiPage() {
       )}
 
       {/* ── HERO ── */}
-      <section ref={heroSectionRef} className="relative bg-[#EDE6DA] overflow-hidden flex items-center pt-16">
+      <section ref={heroSectionRef} className="relative bg-[#EDE6DA] overflow-hidden flex items-center pt-16" style={{ marginTop: '-20px' }}>
 
         <div className="container mx-auto px-6 relative z-10 py-16 lg:py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
@@ -480,7 +480,7 @@ export default function NikqiPage() {
                 key={index}
                 className={`group relative p-8 overflow-hidden hover:-translate-y-1 hover:shadow-2xl reveal ${
                   service.dark
-                    ? "bg-[#1A1209] text-[#F8F4EF]"
+                    ? "bg-[#EFEFEF] border border-[#CCCCCC] text-[#1A1209]"
                     : "bg-white border border-[#D4C0A8] text-[#1A1209]"
                 } `}
                 style={{ transitionDelay: `${index * 80}ms` }}
@@ -493,15 +493,15 @@ export default function NikqiPage() {
                 >
                   {service.icon}
                 </div>
-                <h3 className={`text-xl font-semibold mb-3 uppercase tracking-wide ${service.dark ? "text-[#F8F4EF]" : "text-[#1A1209]"}`}>
+                <h3 className={`text-xl font-semibold mb-3 uppercase tracking-wide ${service.dark ? "text-[#1A1209]" : "text-[#1A1209]"}`}>
                   {service.title}
                 </h3>
-                <p className={`text-sm leading-relaxed mb-6 ${service.dark ? "text-[#D4C0A8]" : "text-[#6A5040]"}`}>
+                <p className={`text-sm leading-relaxed mb-6 ${service.dark ? "text-[#6A5040]" : "text-[#6A5040]"}`}>
                   {service.description}
                 </p>
                 <ul className="space-y-2">
                   {service.features.map((f, fi) => (
-                    <li key={fi} className={`flex items-center gap-2 text-xs ${service.dark ? "text-[#D4C0A8]" : "text-[#6A5040]"}`}>
+                    <li key={fi} className={`flex items-center gap-2 text-xs ${service.dark ? "text-[#6A5040]" : "text-[#6A5040]"}`}>
                       <CheckCircle className="h-3.5 w-3.5 text-[#B09070] flex-shrink-0" />
                       {f}
                     </li>
@@ -569,7 +569,7 @@ export default function NikqiPage() {
       <section
         id="projekte"
        
-        className="py-24 bg-[#1A1209]"
+        className="py-24 bg-[#E8E8E8]"
       >
         <div className="container mx-auto px-6">
           <div
@@ -580,7 +580,7 @@ export default function NikqiPage() {
                 <div className="h-px w-8 bg-[#B09070]" />
                 <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase">Portfolio</span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-semibold text-[#F8F4EF] uppercase">
+              <h2 className="text-4xl lg:text-5xl font-semibold text-[#1A1209] uppercase">
                 Unsere{" "}
                 <span className="text-[#B09070]">Projekte</span>
               </h2>
@@ -775,7 +775,7 @@ export default function NikqiPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollTo("kontakt")}
-              className="inline-flex items-center justify-center gap-2 bg-[#1A1209] hover:bg-[#0D0905] text-[#B09070] font-semibold px-10 py-4 text-sm tracking-widest uppercase hover:scale-105 group"
+              className="inline-flex items-center justify-center gap-2 bg-[#4A4A4A] hover:bg-[#333333] text-white font-semibold px-10 py-4 text-sm tracking-widest uppercase hover:scale-105 group"
             >
               Jetzt Angebot anfordern
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -841,52 +841,52 @@ export default function NikqiPage() {
 
             {/* Right: Form */}
             <div
-              className="bg-[#1A1209] p-8 reveal"
+              className="bg-[#EFEFEF] border border-[#CCCCCC] p-8"
             >
-              <h3 className="text-2xl font-semibold text-[#F8F4EF] mb-8 uppercase tracking-wide">Angebot anfordern</h3>
+              <h3 className="text-2xl font-semibold text-[#1A1209] mb-8 uppercase tracking-wide">Angebot anfordern</h3>
               <form className="space-y-5">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Name</label>
+                    <label className="block text-[#6A5040] text-xs font-semibold uppercase tracking-widest mb-2">Name</label>
                     <input
                       type="text"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
+                      className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1A1209] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                       placeholder="Ihr Name"
                     />
                   </div>
                   <div>
-                    <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Telefon</label>
+                    <label className="block text-[#6A5040] text-xs font-semibold uppercase tracking-widest mb-2">Telefon</label>
                     <input
                       type="tel"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
+                      className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1A1209] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                       placeholder="Ihre Nummer"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">E-Mail</label>
+                  <label className="block text-[#6A5040] text-xs font-semibold uppercase tracking-widest mb-2">E-Mail</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
+                    className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1A1209] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                     placeholder="ihre@email.com"
                   />
                 </div>
                 <div>
-                  <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Leistung</label>
-                  <select className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm">
-                    <option value="" className="bg-[#1A1209]">Leistung wählen</option>
-                    <option value="bad" className="bg-[#1A1209]">Badsanierung & Umbau</option>
-                    <option value="heizung" className="bg-[#1A1209]">Heizungsbau & Modernisierung</option>
-                    <option value="wasser" className="bg-[#1A1209]">Wasserschadensanierung</option>
-                    <option value="waerme" className="bg-[#1A1209]">Wärmepumpen & erneuerbare Energien</option>
-                    <option value="andere" className="bg-[#1A1209]">Andere</option>
+                  <label className="block text-[#6A5040] text-xs font-semibold uppercase tracking-widest mb-2">Leistung</label>
+                  <select className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1A1209] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm">
+                    <option value="">Leistung wählen</option>
+                    <option value="bad">Badsanierung & Umbau</option>
+                    <option value="heizung">Heizungsbau & Modernisierung</option>
+                    <option value="wasser">Wasserschadensanierung</option>
+                    <option value="waerme">Wärmepumpen & erneuerbare Energien</option>
+                    <option value="andere">Andere</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[#8A7060] text-xs font-semibold uppercase tracking-widest mb-2">Nachricht</label>
+                  <label className="block text-[#6A5040] text-xs font-semibold uppercase tracking-widest mb-2">Nachricht</label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-[#F8F4EF] placeholder:text-[#6A5040] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm resize-none"
+                    className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1A1209] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm resize-none"
                     placeholder="Erzählen Sie uns von Ihrem Projekt..."
                   />
                 </div>
@@ -904,7 +904,7 @@ export default function NikqiPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-[#1A1209] border-t border-[#B09070]/20 pt-16 pb-8">
+      <footer className="bg-[#E8E8E8] border-t border-[#CCCCCC] pt-16 pb-8">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-10 mb-16">
             <div>
@@ -914,7 +914,7 @@ export default function NikqiPage() {
               </p>
             </div>
             <div>
-              <h4 className="text-[#F8F4EF] font-semibold mb-5 text-xs uppercase tracking-widest">Leistungen</h4>
+              <h4 className="text-[#1A1209] font-semibold mb-5 text-xs uppercase tracking-widest">Leistungen</h4>
               <ul className="space-y-3">
                 {["Badsanierungen & Umbauten", "Heizungsbau & Modernisierung", "Wasserschadensanierung", "Wärmepumpen & erneuerbare Energien"].map(item => (
                   <li key={item}>
@@ -927,7 +927,7 @@ export default function NikqiPage() {
               </ul>
             </div>
             <div>
-              <h4 className="text-[#F8F4EF] font-semibold mb-5 text-xs uppercase tracking-widest">Unternehmen</h4>
+              <h4 className="text-[#1A1209] font-semibold mb-5 text-xs uppercase tracking-widest">Unternehmen</h4>
               <ul className="space-y-3">
                 {[
                   { label: "Über Uns", id: "ueber-uns" },
@@ -945,7 +945,7 @@ export default function NikqiPage() {
               </ul>
             </div>
             <div>
-              <h4 className="text-[#F8F4EF] font-semibold mb-5 text-xs uppercase tracking-widest">Kontakt</h4>
+              <h4 className="text-[#1A1209] font-semibold mb-5 text-xs uppercase tracking-widest">Kontakt</h4>
               <ul className="space-y-3 text-sm text-[#8A7060]">
                 <li>
                   <a href="tel:+41791326565" className="flex items-center gap-2 hover:text-[#B09070]">
@@ -971,7 +971,7 @@ export default function NikqiPage() {
             </div>
           </div>
 
-          <div className="border-t border-[#B09070]/20 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[#6A5040] text-xs">
+          <div className="border-t border-[#CCCCCC] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[#6A5040] text-xs">
             <p>&copy; 2026 NIKQI Badkultur & Wärme. Alle Rechte vorbehalten.</p>
             <div className="flex items-center gap-6">
               <button onClick={() => setShowAGB(true)} className="hover:text-[#B09070] transition-colors uppercase tracking-widest">AGB</button>
