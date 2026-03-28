@@ -93,7 +93,7 @@ textarea:focus {
 
 /* Mobile drawer */
 @keyframes slideInRight {
-  from { transform: translateX(100%); opacity: 0; }
+  from { transform: translateX(60px); opacity: 0; }
   to   { transform: translateX(0);    opacity: 1; }
 }
 @keyframes fadeSlideIn {

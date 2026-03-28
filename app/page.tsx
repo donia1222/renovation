@@ -818,7 +818,7 @@ export default function NikqiPage() {
                 {[
                   { icon: <Phone className="h-5 w-5" />, label: "Telefon / WhatsApp", value: "079 132 65 65", href: "tel:+41791326565" },
                   { icon: <MessageCircle className="h-5 w-5" />, label: "WhatsApp", value: "079 132 65 65", href: "https://wa.me/41791326565" },
-                  { icon: <Mail className="h-5 w-5" />, label: "E-Mail", value: "info@nikqi.li", href: "mailto:info@nikqi.li" },
+                  { icon: <Mail className="h-5 w-5" />, label: "E-Mail", value: "info@nikqi.ch", href: "mailto:info@nikqi.ch" },
                   { icon: <MapPin className="h-5 w-5" />, label: "Adresse", value: "Bahnhofstrasse 25, 9475 Sevelen, Schweiz", href: null },
                   { icon: <Clock className="h-5 w-5" />, label: "Erreichbarkeit", value: "24 Stunden · 7 Tage / Woche", href: null },
                 ].map(({ icon, label, value, href }) => (
@@ -954,9 +954,9 @@ export default function NikqiPage() {
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:info@nikqi.li" className="flex items-center gap-2 hover:text-[#B09070]">
+                  <a href="mailto:info@nikqi.ch" className="flex items-center gap-2 hover:text-[#B09070]">
                     <Mail className="h-4 w-4 flex-shrink-0" />
-                    info@nikqi.li
+                    info@nikqi.ch
                   </a>
                 </li>
                 <li className="flex items-start gap-2">
