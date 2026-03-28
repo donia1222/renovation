@@ -126,6 +126,12 @@ export default function NikqiPage() {
     return () => obs.disconnect()
   }, [])
 
+  useEffect(() => {
+    const handler = () => setShowDatenschutz(true)
+    window.addEventListener("open-datenschutz", handler)
+    return () => window.removeEventListener("open-datenschutz", handler)
+  }, [])
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
     setIsMobileMenuOpen(false)

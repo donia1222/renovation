@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
+import CookieBanner from "@/components/CookieBanner"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -153,7 +154,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen font-sans" style={{ backgroundColor: "#EDE6DA" }}>{children}</body>
+      <body className="min-h-screen font-sans" style={{ backgroundColor: "#EDE6DA" }}>
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   )
 }
