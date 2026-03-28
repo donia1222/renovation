@@ -390,29 +390,7 @@ export default function NikqiPage() {
         </div>
       </div>
 
-      {/* ── STATS ── */}
-      <section className="bg-[#1A1209] py-20" ref={statsRef as React.RefObject<HTMLDivElement>}>
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { count: c1, suffix: "+", label: "Abgeschlossene Projekte", icon: <TrendingUp className="h-5 w-5" /> },
-              { count: c2, suffix: "+", label: "Jahre Erfahrung", icon: <Clock className="h-5 w-5" /> },
-              { count: c3, suffix: "%", label: "Kundenzufriedenheit", icon: <Star className="h-5 w-5" /> },
-              { count: c4, suffix: " Tage", label: "Erreichbar / Woche", icon: <Users className="h-5 w-5" /> },
-            ].map(({ count, suffix, label, icon }, i) => (
-              <div key={i} className="text-center group">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#B09070]/20 text-[#B09070] mb-4 group-hover:bg-[#B09070]/30">
-                  {icon}
-                </div>
-                <div className="text-5xl lg:text-6xl font-semibold text-[#F8F4EF] mb-2 tabular-nums">
-                  {count}{suffix}
-                </div>
-                <div className="text-[#8A7060] text-xs uppercase tracking-widest">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* ── SERVICES ── */}
       <section
