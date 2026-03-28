@@ -259,7 +259,7 @@ export default function NikqiPage() {
                 </span>
                 <div>
                   <p className="text-xs text-[#8A7060] uppercase tracking-wider">E-Mail</p>
-                  <p className="text-sm font-semibold">info@nikqi.li</p>
+                  <p className="text-sm font-semibold">info@nikqi.ch</p>
                 </div>
               </a>
               <div className="flex items-center gap-3 text-[#1A1209]/70">
@@ -401,26 +401,7 @@ export default function NikqiPage() {
 
       </section>
 
-      {/* ── MARQUEE STRIP ── */}
-      <div className="bg-[#B09070] py-3.5 overflow-hidden">
-        <div className="flex whitespace-nowrap" >
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center gap-10 px-10 flex-shrink-0">
-              {[
-                "✦ Badsanierungen & Umbauten",
-                "✦ Heizungsbau & Modernisierung",
-                "✦ Wasserschadensanierung",
-                "✦ Wärmepumpen & erneuerbare Energien",
-                "✦ 24/7 Service",
-                "✦ 7 Tage / Woche",
-                "✦ Buchs SG · Schweiz · Liechtenstein",
-              ].map((text) => (
-                <span key={text} className="text-[#1A1209] font-semibold text-sm tracking-widest uppercase">{text}</span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
+
 
       
 
