@@ -153,8 +153,8 @@ export default function NikqiPage() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 ${
           headerScrolled
-            ? "bg-[#F8F4EF] border-b border-[#B09070]/30 shadow-md"
-            : "bg-[#F8F4EF]/80 backdrop-blur-sm"
+            ? "bg-[#EDE6DA] border-b border-[#B09070]/30 shadow-sm"
+            : "bg-[#EDE6DA]"
         }`}
       >
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
