@@ -12,7 +12,6 @@ import {
   Hammer,
   Home,
   Wrench,
-  Menu,
   X,
   Briefcase,
   Users,
@@ -34,6 +33,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
+import Link from "next/link"
 
 const EinsatzgebietMap = dynamic(() => import("@/components/EinsatzgebietMap"), { ssr: false })
 
@@ -91,6 +91,8 @@ export default function NikqiPage() {
   const [showDatenschutz, setShowDatenschutz] = useState(false)
   const [lightboxImg, setLightboxImg] = useState<string | null>(null)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [showServicesDropdown, setShowServicesDropdown] = useState(false)
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
 
   const heroSectionRef = useRef<HTMLElement>(null)
   const [pastHero, setPastHero] = useState(false)
@@ -181,7 +183,48 @@ export default function NikqiPage() {
           />
 
           <nav className="hidden md:flex items-center gap-8">
-            {navItems.map(({ label, id }) => (
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-[#1F1F1F]/70 hover:text-[#B09070] text-sm font-semibold tracking-widest uppercase relative group"
+            >
+              Home
+              <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#B09070] group-hover:w-full transition-all" />
+            </button>
+            {/* Dienstleistungen with dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setShowServicesDropdown(true)}
+              onMouseLeave={() => setShowServicesDropdown(false)}
+            >
+              <button
+                onClick={() => scrollTo("dienstleistungen")}
+                className="flex items-center gap-1 text-[#1F1F1F]/70 hover:text-[#B09070] text-sm font-semibold tracking-widest uppercase relative group"
+              >
+                Dienstleistungen
+                <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${showServicesDropdown ? "rotate-180" : ""}`} />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#B09070] group-hover:w-full transition-all" />
+              </button>
+              {showServicesDropdown && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-72 bg-[#EBEBEB] border border-[#B09070]/20 shadow-2xl z-50">
+                  <div className="h-[2px] w-full bg-[#B09070]" />
+                  {[
+                    { label: "Badsanierungen & Umbauten", href: "/dienstleistungen/badsanierungen" },
+                    { label: "Heizungsbau & Modernisierung", href: "/dienstleistungen/heizungsbau" },
+                    { label: "Wasserschadensanierung", href: "/dienstleistungen/wasserschadensanierung" },
+                    { label: "Wärmepumpen & erneuerbare Energien", href: "/dienstleistungen/waermepumpen" },
+                  ].map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block px-5 py-3.5 text-[11px] font-semibold tracking-widest uppercase text-[#4A4A4A] hover:text-[#B09070] hover:bg-[#B09070]/10 border-b border-[#B09070]/10 last:border-0 transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+            {navItems.filter(({ id }) => id !== "dienstleistungen").map(({ label, id }) => (
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
@@ -202,9 +245,12 @@ export default function NikqiPage() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-[#1F1F1F]"
+            className="md:hidden flex flex-col justify-center items-end gap-[5px] w-10 h-10 p-2 group"
+            aria-label="Menü öffnen"
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <span className={`block h-[2px] bg-[#1F1F1F] transition-all duration-300 origin-right ${isMobileMenuOpen ? "w-7 rotate-[-45deg] translate-y-[7px] bg-[#B09070]" : "w-7"}`} />
+            <span className={`block h-[2px] bg-[#B09070] transition-all duration-300 ${isMobileMenuOpen ? "opacity-0 w-0" : "w-5"}`} />
+            <span className={`block h-[2px] bg-[#1F1F1F] transition-all duration-300 origin-right ${isMobileMenuOpen ? "w-7 rotate-[45deg] -translate-y-[7px] bg-[#B09070]" : "w-6"}`} />
           </button>
         </div>
 
@@ -234,8 +280,45 @@ export default function NikqiPage() {
 
             {/* Nav */}
             <nav className="px-3 py-5 space-y-1">
+              <button
+                onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setIsMobileMenuOpen(false) }}
+                className="flex items-center gap-3 w-full px-4 py-3 text-[#1F1F1F]/70 hover:text-[#1F1F1F] hover:bg-[#B09070]/10 border-l-2 border-transparent hover:border-[#B09070] group"
+                style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: "50ms" }}
+              >
+                <span className="text-[#B09070]"><Home className="h-4 w-4" /></span>
+                <span className="text-sm font-semibold tracking-widest uppercase flex-1 text-left">Home</span>
+              </button>
+              {/* Dienstleistungen with sub-items */}
+              <div style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: "80ms" }}>
+                <button
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="flex items-center gap-3 w-full px-4 py-3 text-[#1F1F1F]/70 hover:text-[#B09070] hover:bg-[#B09070]/10 border-l-2 border-transparent hover:border-[#B09070] group"
+                >
+                  <span className="text-[#B09070]"><Wrench className="h-4 w-4" /></span>
+                  <span className="text-sm font-semibold tracking-widest uppercase flex-1 text-left">Dienstleistungen</span>
+                  <ChevronDown className={`h-3.5 w-3.5 text-[#B09070] transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+                </button>
+                {mobileServicesOpen && (
+                  <div className="pl-4 pb-1">
+                    {[
+                      { label: "Badsanierungen & Umbauten", href: "/dienstleistungen/badsanierungen" },
+                      { label: "Heizungsbau & Modernisierung", href: "/dienstleistungen/heizungsbau" },
+                      { label: "Wasserschadensanierung", href: "/dienstleistungen/wasserschadensanierung" },
+                      { label: "Wärmepumpen & erneuerbare Energien", href: "/dienstleistungen/waermepumpen" },
+                    ].map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="block px-4 py-2.5 text-[11px] font-semibold tracking-widest uppercase text-[#4A4A4A] hover:text-[#B09070] hover:bg-[#B09070]/5 border-l border-[#B09070]/30 transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
               {[
-                { label: "Dienstleistungen", id: "dienstleistungen", icon: <Wrench className="h-4 w-4" /> },
                 { label: "Projekte",          id: "projekte",          icon: <FolderOpen className="h-4 w-4" /> },
                 { label: "Über Uns",          id: "ueber-uns",         icon: <Users className="h-4 w-4" /> },
                 { label: "Kontakt",           id: "kontakt",           icon: <MessageCircle className="h-4 w-4" /> },
@@ -244,7 +327,7 @@ export default function NikqiPage() {
                   key={id}
                   onClick={() => scrollTo(id)}
                   className="flex items-center gap-3 w-full px-4 py-3 text-[#1F1F1F]/70 hover:text-[#1F1F1F] hover:bg-[#B09070]/10 border-l-2 border-transparent hover:border-[#B09070] group"
-                  style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: `${i * 60 + 80}ms` }}
+                  style={{ animation: "fadeSlideIn 0.35s ease both", animationDelay: `${i * 60 + 140}ms` }}
                 >
                   <span className="text-[#B09070]">{icon}</span>
                   <span className="text-sm font-semibold tracking-widest uppercase flex-1 text-left">{label}</span>
@@ -507,6 +590,7 @@ export default function NikqiPage() {
                 description: "Komplette Badsanierungen und Umbauten nach Ihren Wünschen – von der Planung bis zur schlüsselfertigen Übergabe.",
                 features: ["Komplette Badplanung", "Premium-Fliesen & Armaturen", "Fußbodenheizung", "10 Jahre Garantie"],
                 dark: true,
+                href: "/dienstleistungen/badsanierungen",
               },
               {
                 icon: <Flame className="h-7 w-7" />,
@@ -515,6 +599,7 @@ export default function NikqiPage() {
                 description: "Effiziente Heizungsanlagen und moderne Heizsysteme für maximalen Komfort und minimale Energiekosten.",
                 features: ["Heizungsplanung", "Modernisierung bestehender Anlagen", "Energieeffizienz-Optimierung", "Zertifizierte Fachkräfte"],
                 dark: false,
+                href: "/dienstleistungen/heizungsbau",
               },
               {
                 icon: <Shield className="h-7 w-7" />,
@@ -523,6 +608,7 @@ export default function NikqiPage() {
                 description: "Schnelle und professionelle Schadensbehebung bei Wasserschäden – 24/7 erreichbar, 7 Tage die Woche.",
                 features: ["Notfalldienst 24/7", "Professionelle Trocknung", "Schadensanalyse", "Komplette Wiederherstellung"],
                 dark: false,
+                href: "/dienstleistungen/wasserschadensanierung",
               },
               {
                 icon: <Leaf className="h-7 w-7" />,
@@ -531,14 +617,15 @@ export default function NikqiPage() {
                 description: "Zukunftssichere Heizlösungen mit Wärmepumpen und erneuerbaren Energien – umweltfreundlich und kosteneffizient.",
                 features: ["Luft-Wasser-Wärmepumpen", "Erdwärmepumpen", "Solar-Unterstützung", "Fördermittel-Beratung"],
                 dark: true,
+                href: "/dienstleistungen/waermepumpen",
               },
             ].map((service, index) => (
               <div
                 key={index}
                 className={`group relative p-8 overflow-hidden hover:-translate-y-1 hover:shadow-2xl reveal ${
                   service.dark
-                    ? "bg-[#EFEFEF] border border-[#CCCCCC] text-[#1F1F1F]"
-                    : "bg-white border border-[#D0D0D0] text-[#1F1F1F]"
+                    ? "bg-[#E8DDD0] border border-[#C0AD97] text-[#1F1F1F]"
+                    : "bg-[#EDE6DA] border border-[#C8B8A0] text-[#1F1F1F]"
                 } `}
                 style={{ transitionDelay: `${index * 80}ms` }}
               >
@@ -569,9 +656,9 @@ export default function NikqiPage() {
                     </li>
                   ))}
                 </ul>
-                <div className={`mt-6 flex items-center gap-1 text-xs font-semibold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 ${service.dark ? "text-[#B09070]" : "text-[#B09070]"}`}>
+                <Link href={service.href} className={`mt-6 flex items-center gap-1 text-xs font-semibold uppercase tracking-widest opacity-0 group-hover:opacity-100 translate-x-0 group-hover:translate-x-1 transition-all ${service.dark ? "text-[#B09070]" : "text-[#B09070]"}`}>
                   Mehr erfahren <ArrowRight className="h-3 w-3" />
-                </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -1167,8 +1254,11 @@ export default function NikqiPage() {
             <div className="flex items-center gap-6">
               <button onClick={() => setShowAGB(true)} className="hover:text-[#B09070] transition-colors uppercase tracking-widest">AGB</button>
               <button onClick={() => setShowDatenschutz(true)} className="hover:text-[#B09070] transition-colors uppercase tracking-widest">Datenschutz</button>
-              <a href="https://lweb.ch" target="_blank" rel="noopener noreferrer" className="hover:text-[#B09070] transition-colors">
-                Webseite <span className="text-[#B09070] font-semibold">lweb.ch</span>
+              <a href="https://lweb.ch" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 border border-[#B09070]/30 hover:border-[#B09070] px-3 py-1.5 transition-colors group">
+                <span className="text-[#6B6B6B] text-[10px] tracking-widest uppercase group-hover:text-[#4A4A4A]">Moderne &amp; individuelle Webseiten</span>
+                <span className="h-3 w-px bg-[#B09070]/50" />
+                <span className="text-[#B09070] font-semibold text-[10px] tracking-widest uppercase">lweb.ch</span>
               </a>
             </div>
           </div>
@@ -1176,21 +1266,6 @@ export default function NikqiPage() {
       </footer>
 
 
-      {/* ── FLOATING WHATSAPP ── */}
-      <a
-        href="https://wa.me/41791326565"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-[90] flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold px-5 py-3.5 shadow-2xl hover:shadow-green-500/30 hover:scale-105 group"
-        style={{ borderRadius: 0 }}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.126 1.527 5.857L0 24l6.337-1.499A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.004-1.37l-.358-.213-3.761.89.948-3.666-.233-.377A9.796 9.796 0 012.182 12c0-5.422 4.396-9.818 9.818-9.818 5.422 0 9.818 4.396 9.818 9.818 0 5.422-4.396 9.818-9.818 9.818z"/>
-        </svg>
-        <span className="text-sm hidden sm:block">WhatsApp</span>
-        <span className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-red-500 rounded-full animate-pulse" />
-      </a>
 
       {/* ── LIGHTBOX ── */}
       {lightboxImg && (
