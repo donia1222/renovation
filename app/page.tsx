@@ -33,6 +33,9 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useEffect, useRef, useState } from "react"
+import dynamic from "next/dynamic"
+
+const EinsatzgebietMap = dynamic(() => import("@/components/EinsatzgebietMap"), { ssr: false })
 
 function useInView(threshold = 0.15) {
   const [isInView, setIsInView] = useState(false)
@@ -906,9 +909,9 @@ export default function NikqiPage() {
       </section>
 
       {/* ── AREA / EINSATZGEBIET ── */}
-      <section className="py-20 bg-[#F5F5F5] border-y border-[#D0D0D0] relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-12 reveal">
+      <section className="py-20 bg-[#F5F5F5] border-y border-[#D0D0D0]">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-10 reveal">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-8 bg-[#B09070]" />
               <span className="text-[#B09070] text-xs font-semibold tracking-[0.25em] uppercase">Einsatzgebiet</span>
@@ -919,19 +922,18 @@ export default function NikqiPage() {
             </h2>
             <p className="text-[#6B6B6B] max-w-lg mx-auto">Wir sind in der gesamten Region für Sie unterwegs – schnell, zuverlässig und immer persönlich.</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 reveal">
-            {[
-              "Sevelen", "Buchs SG", "Sargans", "Mels", "Bad Ragaz",
-              "Vaduz FL", "Schaan FL", "Trübbach", "Wartau", "Grabs",
-              "Gams", "Haag SG",
-            ].map((place, i) => (
-              <div key={place} className="flex items-center gap-2 bg-white hover:bg-[#B09070]/10 border border-[#D0D0D0] hover:border-[#B09070]/50 px-4 py-3 group cursor-default reveal" style={{ transitionDelay: `${i * 40}ms` }}>
-                <MapPin className="h-3.5 w-3.5 text-[#B09070] flex-shrink-0" />
-                <span className="text-[#4A4A4A] text-xs font-semibold uppercase tracking-wide group-hover:text-[#1F1F1F]">{place}</span>
-              </div>
-            ))}
+          <div className="reveal" style={{ position: "relative", zIndex: 1 }}>
+            <EinsatzgebietMap />
           </div>
-          <p className="text-center text-[#9A9A9A] text-xs mt-6 reveal">+ gesamte Deutschschweiz auf Anfrage</p>
+          <p className="text-center text-[#9A9A9A] text-xs mt-4 reveal">
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block w-3 h-3 rounded-full bg-[#B09070]" /> Hauptstandort Sevelen
+              <span className="mx-3 text-[#D0D0D0]">·</span>
+              <span className="inline-block w-2.5 h-2.5 rounded-full bg-[#1F1F1F]" /> Einsatzgebiet
+              <span className="mx-3 text-[#D0D0D0]">·</span>
+              + gesamte Deutschschweiz auf Anfrage
+            </span>
+          </p>
         </div>
       </section>
 
