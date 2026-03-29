@@ -33,10 +33,10 @@
     /* NIKQI Brand Colors */
     --nikqi-sand: #B09070;
     --nikqi-sand-light: #D4C0A8;
-    --nikqi-sand-dark: #8A7060;
-    --nikqi-dark: #1A1209;
-    --nikqi-cream: #F8F4EF;
-    --nikqi-cream2: #EDE6DA;
+    --nikqi-sand-dark: #6B6B6B;
+    --nikqi-dark: #1F1F1F;
+    --nikqi-cream: #F5F5F5;
+    --nikqi-cream2: #EBEBEB;
   }
 }
 
@@ -45,8 +45,8 @@
     @apply border-border;
   }
   body {
-    background-color: #EDE6DA;
-    color: #1A1209;
+    background-color: #EBEBEB;
+    color: #1F1F1F;
     font-family: var(--font-poppins), 'Poppins', Arial, sans-serif;
   }
 }
@@ -54,7 +54,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  background-color: #EDE6DA;
+  background-color: #EBEBEB;
 }
 
 /* Custom scrollbar – NIKQI sand */
@@ -62,14 +62,14 @@ html {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F8F4EF;
+  background: #F5F5F5;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #B09070, #8A7060);
+  background: linear-gradient(to bottom, #B09070, #6B6B6B);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #8A7060, #6A5040);
+  background: linear-gradient(to bottom, #6B6B6B, #4A4A4A);
 }
 
 /* Focus states */
@@ -104,7 +104,7 @@ textarea:focus {
 /* Marquee */
 @keyframes marquee {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-33.333%); }
 }
 
 /* Blob */
