@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
 import CookieBanner from "@/components/CookieBanner"
+import { Analytics } from "@vercel/analytics/next"
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -157,6 +158,7 @@ export default function RootLayout({
       <body className="min-h-screen font-sans" style={{ backgroundColor: "#EDE6DA" }}>
         {children}
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   )
