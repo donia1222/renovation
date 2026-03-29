@@ -93,6 +93,19 @@ export default function NikqiPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [showServicesDropdown, setShowServicesDropdown] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [formData, setFormData] = useState({ name: "", telefon: "", email: "", leistung: "", nachricht: "" })
+
+  const sendViaWhatsApp = () => {
+    const leistungLabel = formData.leistung || "–"
+    const msg = `Hallo NIKQI,\n\nName: ${formData.name}\nTelefon: ${formData.telefon}\nE-Mail: ${formData.email}\nLeistung: ${leistungLabel}\nNachricht: ${formData.nachricht}`
+    window.open(`https://wa.me/41791326565?text=${encodeURIComponent(msg)}`, "_blank")
+  }
+
+  const sendViaEmail = () => {
+    const subject = `Anfrage: ${formData.leistung || "Allgemein"} – ${formData.name}`
+    const body = `Name: ${formData.name}\nTelefon: ${formData.telefon}\nE-Mail: ${formData.email}\nLeistung: ${formData.leistung || "–"}\n\nNachricht:\n${formData.nachricht}`
+    window.location.href = `mailto:info@nikqi.ch?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  }
 
   const heroSectionRef = useRef<HTMLElement>(null)
   const [pastHero, setPastHero] = useState(false)
@@ -1122,12 +1135,14 @@ export default function NikqiPage() {
               className="bg-[#EFEFEF] border border-[#CCCCCC] p-8"
             >
               <h3 className="text-2xl font-semibold text-[#1F1F1F] mb-8 uppercase tracking-wide">Angebot anfordern</h3>
-              <form className="space-y-5">
+              <div className="space-y-5">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[#4A4A4A] text-xs font-semibold uppercase tracking-widest mb-2">Name</label>
                     <input
                       type="text"
+                      value={formData.name}
+                      onChange={e => setFormData(p => ({ ...p, name: e.target.value }))}
                       className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1F1F1F] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                       placeholder="Ihr Name"
                     />
@@ -1136,6 +1151,8 @@ export default function NikqiPage() {
                     <label className="block text-[#4A4A4A] text-xs font-semibold uppercase tracking-widest mb-2">Telefon</label>
                     <input
                       type="tel"
+                      value={formData.telefon}
+                      onChange={e => setFormData(p => ({ ...p, telefon: e.target.value }))}
                       className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1F1F1F] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                       placeholder="Ihre Nummer"
                     />
@@ -1145,37 +1162,59 @@ export default function NikqiPage() {
                   <label className="block text-[#4A4A4A] text-xs font-semibold uppercase tracking-widest mb-2">E-Mail</label>
                   <input
                     type="email"
+                    value={formData.email}
+                    onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
                     className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1F1F1F] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
                     placeholder="ihre@email.com"
                   />
                 </div>
                 <div>
                   <label className="block text-[#4A4A4A] text-xs font-semibold uppercase tracking-widest mb-2">Leistung</label>
-                  <select className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1F1F1F] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm">
+                  <select
+                    value={formData.leistung}
+                    onChange={e => setFormData(p => ({ ...p, leistung: e.target.value }))}
+                    className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1F1F1F] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm"
+                  >
                     <option value="">Leistung wählen</option>
-                    <option value="bad">Badsanierung & Umbau</option>
-                    <option value="heizung">Heizungsbau & Modernisierung</option>
-                    <option value="wasser">Wasserschadensanierung</option>
-                    <option value="waerme">Wärmepumpen & erneuerbare Energien</option>
-                    <option value="andere">Andere</option>
+                    <option value="Badsanierung & Umbau">Badsanierung & Umbau</option>
+                    <option value="Heizungsbau & Modernisierung">Heizungsbau & Modernisierung</option>
+                    <option value="Wasserschadensanierung">Wasserschadensanierung</option>
+                    <option value="Wärmepumpen & erneuerbare Energien">Wärmepumpen & erneuerbare Energien</option>
+                    <option value="Andere">Andere</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-[#4A4A4A] text-xs font-semibold uppercase tracking-widest mb-2">Nachricht</label>
                   <textarea
                     rows={4}
+                    value={formData.nachricht}
+                    onChange={e => setFormData(p => ({ ...p, nachricht: e.target.value }))}
                     className="w-full px-4 py-3 bg-white border border-[#CCCCCC] text-[#1F1F1F] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#B09070] focus:ring-1 focus:ring-[#B09070] text-sm resize-none"
                     placeholder="Erzählen Sie uns von Ihrem Projekt..."
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#6B6B6B] text-[#1F1F1F] font-semibold py-4 text-sm tracking-widest uppercase hover:shadow-lg group"
-                >
-                  Anfrage absenden
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </form>
+                <div className="grid grid-cols-2 gap-3 pt-1">
+                  <button
+                    type="button"
+                    onClick={sendViaWhatsApp}
+                    className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#1ebe5d]  text-[#1F1F1F]  font-semibold py-4 text-xs tracking-widest uppercase transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 flex-shrink-0">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.555 4.126 1.527 5.857L0 24l6.337-1.499A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.004-1.37l-.358-.213-3.761.89.948-3.666-.233-.377A9.796 9.796 0 012.182 12c0-5.422 4.396-9.818 9.818-9.818 5.422 0 9.818 4.396 9.818 9.818 0 5.422-4.396 9.818-9.818 9.818z"/>
+                    </svg>
+                    WhatsApp
+                  </button>
+                  <button
+                    type="button"
+                    onClick={sendViaEmail}
+                    className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#6B6B6B] text-[#1F1F1F] font-semibold py-4 text-xs tracking-widest uppercase transition-colors"
+                  >
+                    <Mail className="h-4 w-4 flex-shrink-0" />
+                    E-Mail
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
