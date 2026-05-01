@@ -490,7 +490,7 @@ export default function NikqiPage() {
                 onClick={() => scrollTo("kontakt")}
                 className="flex items-center justify-center gap-2 bg-[#B09070] hover:bg-[#6B6B6B] text-[#1F1F1F] font-semibold rounded-none px-8 py-4 text-sm tracking-widest uppercase group"
               >
-                Kostenlose Beratung
+            Beratung
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
@@ -705,7 +705,7 @@ export default function NikqiPage() {
             <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-[#B09070] via-[#D0D0D0] to-[#B09070]" />
 
             {[
-              { step: "01", title: "Beratung", desc: "Kostenlose Erstberatung und Bedarfsanalyse für Ihr Projekt.", icon: <MessageCircle className="h-6 w-6" /> },
+              { step: "01", title: "Beratung", desc: " Erstberatung und Bedarfsanalyse für Ihr Projekt.", icon: <MessageCircle className="h-6 w-6" /> },
               { step: "02", title: "Planung", desc: "Detailplanung, Materialauswahl und transparentes Angebot.", icon: <Briefcase className="h-6 w-6" /> },
               { step: "03", title: "Ausführung", desc: "Fachkundige Umsetzung durch zertifizierte Schweizer Fachkräfte.", icon: <Hammer className="h-6 w-6" /> },
               { step: "04", title: "Übergabe", desc: "Qualitätskontrolle, Übergabe und langfristige Garantie.", icon: <CheckCircle className="h-6 w-6" /> },
@@ -954,7 +954,7 @@ export default function NikqiPage() {
                 onClick={() => scrollTo("kontakt")}
                 className="flex items-center gap-2 bg-[#B09070] hover:bg-[#6B6B6B] text-[#1F1F1F] font-semibold px-8 py-4 text-sm tracking-widest uppercase group"
               >
-                Kostenlose Beratung
+              Beratung
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -1049,7 +1049,7 @@ export default function NikqiPage() {
             <span className="text-[#B09070]">nächstes Projekt?</span>
           </h2>
           <p className="text-[#6B6B6B] text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-            Kontaktieren Sie uns jetzt – kostenlose Beratung, schnelle Reaktion, Schweizer Qualität. 24/7 für Sie erreichbar.
+            Kontaktieren Sie uns jetzt – schnelle Reaktion, Schweizer Qualität. 24/7 für Sie erreichbar.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
@@ -1069,7 +1069,7 @@ export default function NikqiPage() {
           <div className="flex items-center justify-center gap-8 mt-12 text-[#6B6B6B] text-xs">
             {[
               { icon: <Clock className="h-3.5 w-3.5" />, text: "Antwort innerhalb 24h" },
-              { icon: <Shield className="h-3.5 w-3.5" />, text: "Kostenlos & unverbindlich" },
+    
               { icon: <BadgeCheck className="h-3.5 w-3.5" />, text: "Zertifizierte Fachkräfte" },
             ].map(({ icon, text }) => (
               <div key={text} className="flex items-center gap-2">
@@ -1102,7 +1102,7 @@ export default function NikqiPage() {
                 <span className="text-[#B09070]">miteinander</span>
               </h2>
               <p className="text-[#4A4A4A] leading-relaxed mb-10">
-                Vereinbaren Sie eine kostenlose Beratung. 24/7 erreichbar – 7 Tage die Woche.
+            24/7 erreichbar – 7 Tage die Woche.
               </p>
 
               <div className="space-y-3">
